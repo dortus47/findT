@@ -1,0 +1,38 @@
+PODS:
+  - Alamofire (5.5.0)
+  - RxCocoa (5.1.3):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxRelay (5.1.3):
+    - RxSwift (~> 5)
+  - RxSwift (5.1.3)
+  - SnapKit (5.0.1)
+  - SwiftLint (0.45.1)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.5)
+  - RxCocoa (~> 5)
+  - RxSwift (~> 5)
+  - SnapKit (~> 5.0.0)
+  - SwiftLint
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - RxCocoa
+    - RxRelay
+    - RxSwift
+    - SnapKit
+    - SwiftLint
+
+SPEC CHECKSUMS:
+  Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
+  RxCocoa: e2ed092d5432e4296aa818021d27de4090ac0354
+  RxRelay: 5a18c2eb2d68326ebaf0112f80d837ae41b92b97
+  RxSwift: 915abbdfb62214aa89ccd0b194d44fb478019b27
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SwiftLint: 06ac37e4d38c7068e0935bb30cda95f093bec761
+
+PODFILE CHECKSUM: 7c59f439f0e78661cf2f35cfa1ef8e47ac0c5868
+
+COCOAPODS: 1.11.2
