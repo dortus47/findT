@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "24093A820878D574C27B09F22C9E4535"
-               BuildableName = "Pods_findT.framework"
+               BuildableName = "libPods-findT.a"
                BlueprintName = "Pods-findT"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>

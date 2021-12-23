@@ -1,4 +1,4 @@
-framework module Pods_findT {
+module Pods_findT {
   umbrella header "Pods-findT-umbrella.h"
 
   export *

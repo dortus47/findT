@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		02FAF6EC44BB479749124DB8 /* Pods_findT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48EA073D272E9726EBF52529 /* Pods_findT.framework */; };
+		1A892C4E9D95B95BD5016483 /* libPods-findT.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7382EB9D7B006B6CF57B79AF /* libPods-findT.a */; };
+		A15D463027744CE5000AC7BE /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = A15D462F27744CE5000AC7BE /* .swiftlint.yml */; };
 		A18D8C97277438150011660A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18D8C96277438150011660A /* AppDelegate.swift */; };
 		A18D8C99277438150011660A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18D8C98277438150011660A /* SceneDelegate.swift */; };
 		A18D8C9B277438150011660A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18D8C9A277438150011660A /* ViewController.swift */; };
@@ -17,8 +18,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		48EA073D272E9726EBF52529 /* Pods_findT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_findT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7382EB9D7B006B6CF57B79AF /* libPods-findT.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-findT.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		821B6953A13055EEA85A6742 /* Pods-findT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-findT.debug.xcconfig"; path = "Target Support Files/Pods-findT/Pods-findT.debug.xcconfig"; sourceTree = "<group>"; };
+		A15D462F27744CE5000AC7BE /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		A18D8C93277438150011660A /* findT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = findT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A18D8C96277438150011660A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A18D8C98277438150011660A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -35,7 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				02FAF6EC44BB479749124DB8 /* Pods_findT.framework in Frameworks */,
+				1A892C4E9D95B95BD5016483 /* libPods-findT.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,7 +47,7 @@
 		030DA76F7EB25FFB5284B364 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				48EA073D272E9726EBF52529 /* Pods_findT.framework */,
+				7382EB9D7B006B6CF57B79AF /* libPods-findT.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -56,13 +58,13 @@
 				821B6953A13055EEA85A6742 /* Pods-findT.debug.xcconfig */,
 				C9AFC4FAADC54057EACD9C1E /* Pods-findT.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
 		A18D8C8A277438150011660A = {
 			isa = PBXGroup;
 			children = (
+				A15D462F27744CE5000AC7BE /* .swiftlint.yml */,
 				A18D8C95277438150011660A /* findT */,
 				A18D8C94277438150011660A /* Products */,
 				04E150BF24A030BC1A2CD3A5 /* Pods */,
@@ -81,6 +83,7 @@
 		A18D8C95277438150011660A /* findT */ = {
 			isa = PBXGroup;
 			children = (
+				A18D8CAA277446020011660A /* View Controller */,
 				A18D8C96277438150011660A /* AppDelegate.swift */,
 				A18D8C98277438150011660A /* SceneDelegate.swift */,
 				A18D8C9A277438150011660A /* ViewController.swift */,
@@ -90,6 +93,13 @@
 				A18D8CA4277438170011660A /* Info.plist */,
 			);
 			path = findT;
+			sourceTree = "<group>";
+		};
+		A18D8CAA277446020011660A /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -103,7 +113,7 @@
 				A18D8C8F277438150011660A /* Sources */,
 				A18D8C90277438150011660A /* Frameworks */,
 				A18D8C91277438150011660A /* Resources */,
-				F3FF937058EF21D98A85137C /* [CP] Embed Pods Frameworks */,
+				A18D8CAB277446B10011660A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -152,6 +162,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A15D463027744CE5000AC7BE /* .swiftlint.yml in Resources */,
 				A18D8CA3277438170011660A /* LaunchScreen.storyboard in Resources */,
 				A18D8CA0277438170011660A /* Assets.xcassets in Resources */,
 				A18D8C9E277438150011660A /* Main.storyboard in Resources */,
@@ -183,22 +194,22 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F3FF937058EF21D98A85137C /* [CP] Embed Pods Frameworks */ = {
+		A18D8CAB277446B10011660A /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-findT/Pods-findT-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			inputPaths = (
+			);
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-findT/Pods-findT-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-findT/Pods-findT-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -286,7 +297,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -341,7 +352,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
