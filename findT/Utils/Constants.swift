@@ -7,10 +7,6 @@
 
 import Foundation
 
-class timeVC {
-    
-}
-
 enum INFO {
     static let serviceID: String = "vulnerableUserInfo"
 

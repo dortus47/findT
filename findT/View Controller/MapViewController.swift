@@ -36,6 +36,12 @@ final class MapViewController: UIViewController, CLLocationManagerDelegate, MKMa
 
     let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
+        searchBar.searchTextField.backgroundColor = UIColor(red: 256, green: 256, blue: 256, alpha: 1)
+        searchBar.searchTextField.layer.borderColor = UIColor.lightGray.cgColor
+        searchBar.searchBarStyle = .minimal
+        searchBar.searchTextField.layer.borderWidth = 1.4
+        searchBar.searchTextField.layer.cornerRadius = 9
+        searchBar.placeholder = "조회를 원하는 역을 입력하세요"
         return searchBar
     }()
 
@@ -68,22 +74,24 @@ final class MapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         let tabBarHeight = self.tabBarController!.tabBar.frame.size.height * -1
         self.view.addSubview(mapView)
         mapView.snp.makeConstraints { make in
-            make.width.equalTo(self.view)
-            make.height.equalTo(self.view)
-            make.bottom.equalTo(self.view).offset(tabBarHeight)
+            make.width.equalToSuperview()
+            make.height.equalToSuperview()
+            make.bottom.equalToSuperview().offset(tabBarHeight)
         }
 
         self.view.addSubview(selfPositionBtn)
         selfPositionBtn.snp.makeConstraints { make in
-            // make.width.height.equalTo(50)
-            make.bottom.equalTo(self.view).offset(-100)
-            make.right.equalTo(self.view).offset(-30)
+            make.bottom.equalToSuperview().offset(-100)
+            make.right.equalToSuperview().offset(-30)
         }
 
-//        self.view.addSubview(searchBar)
-        let searchController = UISearchController(searchResultsController: nil)
-        self.navigationItem.searchController = searchController
+        self.view.addSubview(searchBar)
+        searchBar.snp.makeConstraints { make in
+            make.width.equalToSuperview()
+            make.top.equalToSuperview().offset(50)
+        }
 
+//        searchBar.superview?.backgroundColor = .clear
         selfPositionBtn.addTarget(self, action: #selector(didTapSelfPositionBtn), for: .touchUpInside)
     }
 
@@ -162,6 +170,10 @@ final class MapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         self.mapView.showsUserLocation = true
         self.mapView.setUserTrackingMode(.follow, animated: true)
     }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+         self.view.endEditing(true)
+   }
 
     func getTest() {
         //            let url = "https://jsonplaceholder.typicode.com/todos/1"
