@@ -76,6 +76,7 @@
 		A18D8C8A277438150011660A = {
 			isa = PBXGroup;
 			children = (
+				A15D462F27744CE5000AC7BE /* .swiftlint.yml */,
 				A18D8C95277438150011660A /* findT */,
 				A18D8C94277438150011660A /* Products */,
 				04E150BF24A030BC1A2CD3A5 /* Pods */,
@@ -103,7 +104,6 @@
 				A18D8C9F277438170011660A /* Assets.xcassets */,
 				A18D8CA1277438170011660A /* LaunchScreen.storyboard */,
 				A18D8CA4277438170011660A /* Info.plist */,
-				A15D462F27744CE5000AC7BE /* .swiftlint.yml */,
 			);
 			path = findT;
 			sourceTree = "<group>";
@@ -219,7 +219,7 @@
 		};
 		A18D8CAB277446B10011660A /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 12;
 			files = (
 			);
 			inputFileListPaths = (
@@ -230,7 +230,7 @@
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n${PODS_ROOT}/SwiftLint/swiftlint\n";
 		};

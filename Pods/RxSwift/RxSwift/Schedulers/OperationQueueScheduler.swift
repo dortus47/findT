@@ -6,10 +6,8 @@
 //  Copyright © 2015 Krunoslav Zaher. All rights reserved.
 //
 
-import class Foundation.Operation
-import class Foundation.OperationQueue
-import class Foundation.BlockOperation
 import Dispatch
+import Foundation
 
 /// Abstracts the work that needs to be performed on a specific `NSOperationQueue`.
 ///
@@ -17,7 +15,7 @@ import Dispatch
 public class OperationQueueScheduler: ImmediateSchedulerType {
     public let operationQueue: OperationQueue
     public let queuePriority: Operation.QueuePriority
-
+    
     /// Constructs new instance of `OperationQueueScheduler` that performs work on `operationQueue`.
     ///
     /// - parameter operationQueue: Operation queue targeted to perform work on.
@@ -26,7 +24,7 @@ public class OperationQueueScheduler: ImmediateSchedulerType {
         self.operationQueue = operationQueue
         self.queuePriority = queuePriority
     }
-
+    
     /**
     Schedules an action to be executed recursively.
     
@@ -42,13 +40,14 @@ public class OperationQueueScheduler: ImmediateSchedulerType {
                 return
             }
 
+
             cancel.setDisposable(action(state))
         }
 
         operation.queuePriority = self.queuePriority
 
         self.operationQueue.addOperation(operation)
-
+        
         return cancel
     }
 

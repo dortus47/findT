@@ -19,7 +19,7 @@ extension Reactive where Base: UITabBar {
 
     /// Reactive wrapper for `delegate` message `tabBar(_:willBeginCustomizing:)`.
     public var willBeginCustomizing: ControlEvent<[UITabBarItem]> {
-
+        
         let source = delegate.methodInvoked(#selector(UITabBarDelegate.tabBar(_:willBeginCustomizing:)))
             .map { a in
                 return try castOrThrow([UITabBarItem].self, a[1])
@@ -68,13 +68,13 @@ extension Reactive where Base: UITabBar {
 /**
  iOS and tvOS
  */
-
+    
 extension Reactive where Base: UITabBar {
     /// Reactive wrapper for `delegate`.
     ///
     /// For more information take a look at `DelegateProxyType` protocol documentation.
     public var delegate: DelegateProxy<UITabBar, UITabBarDelegate> {
-        return RxTabBarDelegateProxy.proxy(for: base)
+        RxTabBarDelegateProxy.proxy(for: base)
     }
 
     /// Reactive wrapper for `delegate` message `tabBar(_:didSelect:)`.

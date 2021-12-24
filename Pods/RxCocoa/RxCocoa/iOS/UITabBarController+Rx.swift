@@ -10,23 +10,23 @@
 
 import UIKit
 import RxSwift
-
+    
 /**
  iOS only
  */
 #if os(iOS)
 extension Reactive where Base: UITabBarController {
-
+    
     /// Reactive wrapper for `delegate` message `tabBarController:willBeginCustomizing:`.
     public var willBeginCustomizing: ControlEvent<[UIViewController]> {
         let source = delegate.methodInvoked(#selector(UITabBarControllerDelegate.tabBarController(_:willBeginCustomizing:)))
             .map { a in
                 return try castOrThrow([UIViewController].self, a[1])
         }
-
+        
         return ControlEvent(events: source)
     }
-
+    
     /// Reactive wrapper for `delegate` message `tabBarController:willEndCustomizing:changed:`.
     public var willEndCustomizing: ControlEvent<(viewControllers: [UIViewController], changed: Bool)> {
         let source = delegate.methodInvoked(#selector(UITabBarControllerDelegate.tabBarController(_:willEndCustomizing:changed:)))
@@ -35,10 +35,10 @@ extension Reactive where Base: UITabBarController {
                 let changed = try castOrThrow(Bool.self, a[2])
                 return (viewControllers, changed)
         }
-
+        
         return ControlEvent(events: source)
     }
-
+    
     /// Reactive wrapper for `delegate` message `tabBarController:didEndCustomizing:changed:`.
     public var didEndCustomizing: ControlEvent<(viewControllers: [UIViewController], changed: Bool)> {
         let source = delegate.methodInvoked(#selector(UITabBarControllerDelegate.tabBarController(_:didEndCustomizing:changed:)))
@@ -47,12 +47,12 @@ extension Reactive where Base: UITabBarController {
                 let changed = try castOrThrow(Bool.self, a[2])
                 return (viewControllers, changed)
         }
-
+        
         return ControlEvent(events: source)
     }
 }
 #endif
-
+    
 /**
  iOS and tvOS
  */
@@ -62,16 +62,16 @@ extension Reactive where Base: UITabBarController {
     ///
     /// For more information take a look at `DelegateProxyType` protocol documentation.
     public var delegate: DelegateProxy<UITabBarController, UITabBarControllerDelegate> {
-        return RxTabBarControllerDelegateProxy.proxy(for: base)
+        RxTabBarControllerDelegateProxy.proxy(for: base)
     }
-
+    
     /// Reactive wrapper for `delegate` message `tabBarController:didSelect:`.
     public var didSelect: ControlEvent<UIViewController> {
         let source = delegate.methodInvoked(#selector(UITabBarControllerDelegate.tabBarController(_:didSelect:)))
             .map { a in
                 return try castOrThrow(UIViewController.self, a[1])
         }
-
+        
         return ControlEvent(events: source)
     }
 }

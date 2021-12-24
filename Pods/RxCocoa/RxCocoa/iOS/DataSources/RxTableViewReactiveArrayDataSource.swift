@@ -12,18 +12,20 @@ import UIKit
 import RxSwift
 
 // objc monkey business
-class _RxTableViewReactiveArrayDataSource: NSObject, UITableViewDataSource {
-
+class _RxTableViewReactiveArrayDataSource
+    : NSObject
+    , UITableViewDataSource {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        1
     }
-
+   
     func _tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        0
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return _tableView(tableView, numberOfRowsInSection: section)
+        _tableView(tableView, numberOfRowsInSection: section)
     }
 
     fileprivate func _tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -31,11 +33,14 @@ class _RxTableViewReactiveArrayDataSource: NSObject, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return _tableView(tableView, cellForRowAt: indexPath)
+        _tableView(tableView, cellForRowAt: indexPath)
     }
 }
 
-class RxTableViewReactiveArrayDataSourceSequenceWrapper<Sequence: Swift.Sequence>: RxTableViewReactiveArrayDataSource<Sequence.Element>, RxTableViewDataSourceType {
+
+class RxTableViewReactiveArrayDataSourceSequenceWrapper<Sequence: Swift.Sequence>
+    : RxTableViewReactiveArrayDataSource<Sequence.Element>
+    , RxTableViewDataSourceType {
     typealias Element = Sequence
 
     override init(cellFactory: @escaping CellFactory) {
@@ -51,13 +56,15 @@ class RxTableViewReactiveArrayDataSourceSequenceWrapper<Sequence: Swift.Sequence
 }
 
 // Please take a look at `DelegateProxyType.swift`
-class RxTableViewReactiveArrayDataSource<Element>: _RxTableViewReactiveArrayDataSource, SectionedViewDataSourceType {
+class RxTableViewReactiveArrayDataSource<Element>
+    : _RxTableViewReactiveArrayDataSource
+    , SectionedViewDataSourceType {
     typealias CellFactory = (UITableView, Int, Element) -> UITableViewCell
-
+    
     var itemModels: [Element]?
-
+    
     func modelAtIndex(_ index: Int) -> Element? {
-        return itemModels?[index]
+        itemModels?[index]
     }
 
     func model(at indexPath: IndexPath) throws -> Any {
@@ -69,24 +76,24 @@ class RxTableViewReactiveArrayDataSource<Element>: _RxTableViewReactiveArrayData
     }
 
     let cellFactory: CellFactory
-
+    
     init(cellFactory: @escaping CellFactory) {
         self.cellFactory = cellFactory
     }
-
+    
     override func _tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return itemModels?.count ?? 0
+        itemModels?.count ?? 0
     }
-
+    
     override func _tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return cellFactory(tableView, indexPath.item, itemModels![indexPath.row])
+        cellFactory(tableView, indexPath.item, itemModels![indexPath.row])
     }
-
+    
     // reactive
-
+    
     func tableView(_ tableView: UITableView, observedElements: [Element]) {
         self.itemModels = observedElements
-
+        
         tableView.reloadData()
     }
 }

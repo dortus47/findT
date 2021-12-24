@@ -12,12 +12,12 @@ import CoreLocation
 import Alamofire
 
 final class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
-    
+
     lazy var mapView: MKMapView = {
         var mapView = MKMapView()
         return mapView
     }()
-    
+
     let selfPositionBtn: UIButton = {
         let button = UIButton(type: .system)
         button.setTitleColor(.label, for: .normal)
@@ -33,20 +33,29 @@ final class MapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         //        button.layer.cornerRadius = 0.5 * button.bounds.size.width
         return button
     }()
-    
+
+    let searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        return searchBar
+    }()
+
     var locationManager: CLLocationManager = CLLocationManager() /// location manager
     var currentLocation: CLLocation! /// 내 위치 저장
-    
+
+    let dobongLoc = CLLocationCoordinate2D(latitude: 37.6658609, longitude: 127.0317674) // 도봉구
+    let eunpyeongLoc = CLLocationCoordinate2D(latitude: 37.6176125, longitude: 126.9227004) // 은평구
+    let dongdaemoonLoc = CLLocationCoordinate2D(latitude: 37.5838012, longitude: 127.0507003) // 동대문구
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.initViewProcess()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         self.locationErrorProcess()
     }
-    
+
     private func initViewProcess() {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -54,25 +63,30 @@ final class MapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         locationManager.startUpdatingLocation()
         locationManager.startMonitoringSignificantLocationChanges()
         self.currentLocation = locationManager.location
-        
+        self.mapView.mapType = MKMapType.standard
+
+        let tabBarHeight = self.tabBarController!.tabBar.frame.size.height * -1
         self.view.addSubview(mapView)
         mapView.snp.makeConstraints { make in
             make.width.equalTo(self.view)
             make.height.equalTo(self.view)
-            make.top.bottom.equalTo(self.view)
+            make.bottom.equalTo(self.view).offset(tabBarHeight)
         }
-        
-        self.mapView.mapType = MKMapType.standard
-        
+
         self.view.addSubview(selfPositionBtn)
         selfPositionBtn.snp.makeConstraints { make in
-            //make.width.height.equalTo(50)
+            // make.width.height.equalTo(50)
             make.bottom.equalTo(self.view).offset(-100)
             make.right.equalTo(self.view).offset(-30)
         }
+
+//        self.view.addSubview(searchBar)
+        let searchController = UISearchController(searchResultsController: nil)
+        self.navigationItem.searchController = searchController
+
         selfPositionBtn.addTarget(self, action: #selector(didTapSelfPositionBtn), for: .touchUpInside)
     }
-    
+
     // MARK: - Map
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         locationManager = manager
@@ -80,7 +94,7 @@ final class MapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             currentLocation = locationManager.location
         }
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
         case .notDetermined :
@@ -97,7 +111,7 @@ final class MapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             break
         }
     }
-    
+
     /// 위치 받아오기 에러 처리
     private func locationErrorProcess() {
         if CLLocationManager.locationServicesEnabled() {
@@ -120,17 +134,35 @@ final class MapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             self.present(alert, animated: true, completion: nil)
         }
     }
-    
+
+    /// 위도, 경도에 따른 주소 찾기
+    private func findAddr(lat: CLLocationDegrees, long: CLLocationDegrees) {
+        let findLocation = CLLocation(latitude: lat, longitude: long)
+        let geocoder = CLGeocoder()
+        let locale = Locale(identifier: "Ko-kr")
+
+        geocoder.reverseGeocodeLocation(findLocation, preferredLocale: locale) { (placemarks, _) in
+            if let address: [CLPlacemark] = placemarks {
+                var myAdd: String =  ""
+                if let area: String = address.last?.locality {
+                    myAdd += area
+                }
+                if let name: String = address.last?.name {
+                    myAdd += " "
+                    myAdd += name
+                }
+            }
+        }
+    }
+
     // MARK: - Actions
-    
+
     @objc private func didTapSelfPositionBtn() {
         print("click")
         self.mapView.showsUserLocation = true
         self.mapView.setUserTrackingMode(.follow, animated: true)
     }
-    
-    
-    
+
     func getTest() {
         //            let url = "https://jsonplaceholder.typicode.com/todos/1"
         //            AF.request(url,
@@ -144,5 +176,5 @@ final class MapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         //                    print(json)
         //            }
     }
-    
+
 }
