@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1A892C4E9D95B95BD5016483 /* libPods-findT.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7382EB9D7B006B6CF57B79AF /* libPods-findT.a */; };
+		A110046E2774A83200FC29AE /* station_coordinate.json in Resources */ = {isa = PBXBuildFile; fileRef = A110046D2774A83200FC29AE /* station_coordinate.json */; };
 		A151C4D12774534500E5003E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A151C4D02774534500E5003E /* MapViewController.swift */; };
 		A15D463027744CE5000AC7BE /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = A15D462F27744CE5000AC7BE /* .swiftlint.yml */; };
 		A18D8C97277438150011660A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18D8C96277438150011660A /* AppDelegate.swift */; };
@@ -15,11 +16,13 @@
 		A18D8C9E277438150011660A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A18D8C9C277438150011660A /* Main.storyboard */; };
 		A18D8CA0277438170011660A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A18D8C9F277438170011660A /* Assets.xcassets */; };
 		A18D8CA3277438170011660A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A18D8CA1277438170011660A /* LaunchScreen.storyboard */; };
+		A1D7D852277545E5008AB38C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D7D851277545E5008AB38C /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7382EB9D7B006B6CF57B79AF /* libPods-findT.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-findT.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		821B6953A13055EEA85A6742 /* Pods-findT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-findT.debug.xcconfig"; path = "Target Support Files/Pods-findT/Pods-findT.debug.xcconfig"; sourceTree = "<group>"; };
+		A110046D2774A83200FC29AE /* station_coordinate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = station_coordinate.json; sourceTree = "<group>"; };
 		A151C4D02774534500E5003E /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A15D462F27744CE5000AC7BE /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		A18D8C93277438150011660A /* findT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = findT.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -29,6 +32,7 @@
 		A18D8C9F277438170011660A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A18D8CA2277438170011660A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A18D8CA4277438170011660A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A1D7D851277545E5008AB38C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C9AFC4FAADC54057EACD9C1E /* Pods-findT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-findT.release.xcconfig"; path = "Target Support Files/Pods-findT/Pods-findT.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -61,10 +65,17 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		A110046C2774A80F00FC29AE /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				A110046D2774A83200FC29AE /* station_coordinate.json */,
+			);
+			path = Files;
+			sourceTree = "<group>";
+		};
 		A18D8C8A277438150011660A = {
 			isa = PBXGroup;
 			children = (
-				A15D462F27744CE5000AC7BE /* .swiftlint.yml */,
 				A18D8C95277438150011660A /* findT */,
 				A18D8C94277438150011660A /* Products */,
 				04E150BF24A030BC1A2CD3A5 /* Pods */,
@@ -83,6 +94,8 @@
 		A18D8C95277438150011660A /* findT */ = {
 			isa = PBXGroup;
 			children = (
+				A1D7D850277545BE008AB38C /* Utils */,
+				A110046C2774A80F00FC29AE /* Files */,
 				A18D8CAA277446020011660A /* View Controller */,
 				A18D8C96277438150011660A /* AppDelegate.swift */,
 				A18D8C98277438150011660A /* SceneDelegate.swift */,
@@ -90,6 +103,7 @@
 				A18D8C9F277438170011660A /* Assets.xcassets */,
 				A18D8CA1277438170011660A /* LaunchScreen.storyboard */,
 				A18D8CA4277438170011660A /* Info.plist */,
+				A15D462F27744CE5000AC7BE /* .swiftlint.yml */,
 			);
 			path = findT;
 			sourceTree = "<group>";
@@ -100,6 +114,14 @@
 				A151C4D02774534500E5003E /* MapViewController.swift */,
 			);
 			path = "View Controller";
+			sourceTree = "<group>";
+		};
+		A1D7D850277545BE008AB38C /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				A1D7D851277545E5008AB38C /* Constants.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,6 +187,7 @@
 				A15D463027744CE5000AC7BE /* .swiftlint.yml in Resources */,
 				A18D8CA3277438170011660A /* LaunchScreen.storyboard in Resources */,
 				A18D8CA0277438170011660A /* Assets.xcassets in Resources */,
+				A110046E2774A83200FC29AE /* station_coordinate.json in Resources */,
 				A18D8C9E277438150011660A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -196,7 +219,7 @@
 		};
 		A18D8CAB277446B10011660A /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputFileListPaths = (
@@ -207,9 +230,9 @@
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n${PODS_ROOT}/SwiftLint/swiftlint\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -218,6 +241,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1D7D852277545E5008AB38C /* Constants.swift in Sources */,
 				A18D8C97277438150011660A /* AppDelegate.swift in Sources */,
 				A18D8C99277438150011660A /* SceneDelegate.swift in Sources */,
 				A151C4D12774534500E5003E /* MapViewController.swift in Sources */,
