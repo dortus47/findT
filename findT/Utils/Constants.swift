@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Alamofire
 
 enum INFO {
     static let serviceID: String = "vulnerableUserInfo"
@@ -19,4 +20,6 @@ enum INFO {
 
 enum API {
     static let baseURL: String = "http://openapi.kric.go.kr/openapi/vulnerableUserInfo/stationDisabledToilet"
+    
+    static let header: HTTPHeaders = [ "Content-Type": "application/json" ]
 }

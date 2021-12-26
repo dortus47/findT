@@ -9,9 +9,8 @@ import UIKit
 import MapKit
 import SnapKit
 import CoreLocation
-import Alamofire
 
-final class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
+final class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISearchBarDelegate {
 
     lazy var mapView: MKMapView = {
         var mapView = MKMapView()
@@ -26,17 +25,15 @@ final class MapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         let config = UIImage.SymbolConfiguration(pointSize: 40, weight: .thin)
         let image = UIImage(systemName: "location", withConfiguration: config)
         button.setImage(image, for: .normal)
-        //        button.setBackgroundImage(UIImage(systemName: "location"), for: .normal)
         button.tintColor = .black
         button.frame.size.height = 80
         button.frame.size.width = 80
-        //        button.layer.cornerRadius = 0.5 * button.bounds.size.width
         return button
     }()
 
     let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
-        searchBar.searchTextField.backgroundColor = UIColor(red: 256, green: 256, blue: 256, alpha: 1)
+        searchBar.searchTextField.backgroundColor = UIColor(white: 1.0, alpha: 1)
         searchBar.searchTextField.layer.borderColor = UIColor.lightGray.cgColor
         searchBar.searchBarStyle = .minimal
         searchBar.searchTextField.layer.borderWidth = 1.4
@@ -45,8 +42,10 @@ final class MapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         return searchBar
     }()
 
-    var locationManager: CLLocationManager = CLLocationManager() /// location manager
+    lazy var locationManager: CLLocationManager = CLLocationManager() /// location manager
     var currentLocation: CLLocation! /// 내 위치 저장
+    
+    lazy var networkManager: NetWorkManager = NetWorkManager()
 
     let dobongLoc = CLLocationCoordinate2D(latitude: 37.6658609, longitude: 127.0317674) // 도봉구
     let eunpyeongLoc = CLLocationCoordinate2D(latitude: 37.6176125, longitude: 126.9227004) // 은평구
@@ -60,9 +59,14 @@ final class MapViewController: UIViewController, CLLocationManagerDelegate, MKMa
 
     override func viewDidAppear(_ animated: Bool) {
         self.locationErrorProcess()
+        
+        networkManager.requestSignUp()
     }
 
     private func initViewProcess() {
+        let tabBarHeight = self.tabBarController!.tabBar.frame.size.height * -1
+
+        searchBar.delegate = self
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
@@ -71,7 +75,6 @@ final class MapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         self.currentLocation = locationManager.location
         self.mapView.mapType = MKMapType.standard
 
-        let tabBarHeight = self.tabBarController!.tabBar.frame.size.height * -1
         self.view.addSubview(mapView)
         mapView.snp.makeConstraints { make in
             make.width.equalToSuperview()
@@ -91,7 +94,6 @@ final class MapViewController: UIViewController, CLLocationManagerDelegate, MKMa
             make.top.equalToSuperview().offset(50)
         }
 
-//        searchBar.superview?.backgroundColor = .clear
         selfPositionBtn.addTarget(self, action: #selector(didTapSelfPositionBtn), for: .touchUpInside)
     }
 
@@ -163,6 +165,18 @@ final class MapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         }
     }
 
+    /// 검색된 위치로 이동 & marker 추가
+    private func searchMapView(cordinate: CLLocationCoordinate2D, addr: String) {
+        let region = MKCoordinateRegion(center: cordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        self.mapView.setRegion(region, animated: true)
+
+        let anootation = MKPointAnnotation()
+        anootation.coordinate = cordinate
+        anootation.title = addr
+        self.mapView.addAnnotation(anootation)
+        self.findAddr(lat: cordinate.latitude, long: cordinate.longitude)
+    }
+
     // MARK: - Actions
 
     @objc private func didTapSelfPositionBtn() {
@@ -171,22 +185,12 @@ final class MapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         self.mapView.setUserTrackingMode(.follow, animated: true)
     }
 
+    /// 바깥 영역 터치 시, 키보드 내리기
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
          self.view.endEditing(true)
    }
 
-    func getTest() {
-        //            let url = "https://jsonplaceholder.typicode.com/todos/1"
-        //            AF.request(url,
-        //                       method: .get,
-        //                       parameters: nil,
-        //                       encoding: URLEncoding.default,
-        //                       headers: ["Content-Type": "application/json", "Accept": "application/json"])
-        //                .validate(statusCode: 200..<300)
-        //                .responseJSON { (json) in
-        //                    // 여기서 가져온 데이터를 자유롭게 활용하세요.
-        //                    print(json)
-        //            }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.searchMapView(cordinate: dobongLoc, addr: searchBar.searchTextField.text!)
     }
-
 }

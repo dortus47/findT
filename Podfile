@@ -9,6 +9,7 @@ target 'findT' do
   pod 'Alamofire'
   pod 'RxSwift'
   pod 'RxCocoa'
+  pod 'SwiftyJSON'
     # Pods for findT
 
 end

@@ -19,6 +19,8 @@ disabled_rules: # rule identifiers to exclude from running
     - comma
     - control_statement
     - unused_optional_binding
+    - opening_brace
+    - trailing_whitespace
 
 opt_in_rules: # some rules are only opt-in
     - empty_count
