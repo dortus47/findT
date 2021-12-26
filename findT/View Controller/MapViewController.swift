@@ -60,7 +60,7 @@ final class MapViewController: UIViewController, CLLocationManagerDelegate, MKMa
     override func viewDidAppear(_ animated: Bool) {
         self.locationErrorProcess()
         
-        networkManager.requestSignUp()
+        networkManager.requestDPToilet()
     }
 
     private func initViewProcess() {

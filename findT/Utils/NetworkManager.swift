@@ -11,8 +11,10 @@ import SwiftyJSON
 
 class NetWorkManager {
     
-    func requestSignUp() {
+    func requestDPToilet() -> DPToilet {
         let url = API.baseURL
+        var toilet: DPToilet = DPToilet()
+        
         AF.request(url,
                    method: .get,
                    parameters: [
@@ -25,33 +27,23 @@ class NetWorkManager {
                    encoding: URLEncoding.default,
                    headers: ["Content-Type":"application/json; charset=utf-8", "Accept":"application/json; charset=utf-8"])
             .validate(statusCode: 200..<300)
-            .responseDecodable(of: SimpleResponse<String>.self) { response in
-                print("321\n\n")
-                debugPrint(JSON(response.data))
+            .responseJSON { response in
                 switch response.result {
                 case .success(let res):
-                    let json = JSON(res)
-                    print("JSON: \(json)")
+                    let jsonObj = JSON(res)["body"][0]
+                    do {
+                        let jsonData:Data = try JSONEncoder().encode(jsonObj)
+                        let str = String.init(data: jsonData, encoding: .utf8)!.data(using: .utf8)!
+                        let result: DPToilet = try JSONDecoder().decode(DPToilet.self, from: str)
+                        toilet = result
+                    } catch {
+                        print("error")
+                    }
                 case .failure(let err):
-                    print("error\n\n")
                     print(err.localizedDescription)
-                default:
-                    print("default\n\n")
-                    break
                 }
             }
-    }
-}
-
-struct SimpleResponse<T: Codable>: Codable {
-    let header: T?
-    let body: T?
-    enum CodingKeys: CodingKey {
-        case header, body
-    }
-    init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        header = (try? values.decode(T.self, forKey: .header)) ?? nil
-        body = (try? values.decode(T.self, forKey: .body)) ?? nil
+        print(toilet)
+        return toilet
     }
 }
