@@ -19,7 +19,9 @@ enum INFO {
 }
 
 enum API {
-    static let baseURL: String = "http://openapi.kric.go.kr/openapi/vulnerableUserInfo/stationDisabledToilet"
+    static let toiletURL: String = "http://openapi.kric.go.kr/openapi/vulnerableUserInfo/stationDisabledToilet"
     
-    static let header: HTTPHeaders = [ "Content-Type": "application/json" ]
+    static let entireRouteURL: String = "http://openapi.kric.go.kr/openapi/trainUseInfo/subwayRouteInfo"
+    
+    static let header: HTTPHeaders = ["Content-Type":"application/json; charset=utf-8", "Accept":"application/json; charset=utf-8"]
 }

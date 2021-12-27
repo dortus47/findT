@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RxSwift
 
 /// disabled person, 장애인 화장실의 정보
 struct DPToilet: Codable {
@@ -39,7 +40,7 @@ struct DPToilet: Codable {
         self.toltNum = nil
     }
     
-    init(from decoder: Decoder) throws {
+     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         diapExchNum = (try? values.decode(String?.self, forKey: .diapExchNum)) ?? nil
         dtlLoc = (try? values.decode(String?.self, forKey: .dtlLoc)) ?? nil
