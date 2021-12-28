@@ -10,6 +10,7 @@ target 'findT' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'SwiftyJSON'
+  pod 'SSLog'
     # Pods for findT
 
 end

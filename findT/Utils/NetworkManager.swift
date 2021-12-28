@@ -12,7 +12,7 @@ import RxSwift
 
 class NetWorkManager {
     
-    func downloadJSON(url: String, parameters: Dictionary<String, Any>) -> Observable<String?>  {
+    func downloadJSON(url: String, parameters: Dictionary<String, Any>) -> Observable<JSON?>  {
         return Observable.create { observer in
             DispatchQueue.global().async {
                 
@@ -26,20 +26,11 @@ class NetWorkManager {
                         switch response.result {
                         case .success(let res):
                             let jsonObj = JSON(res)["body"][0]
-                            print(jsonObj)
-                            observer.onNext(jsonObj.string)
+                            observer.onNext(jsonObj)
                         case .failure(let err):
                             print(err.localizedDescription)
                         }
                     }
-                
-                //                let url = URL(string: url)!
-                //                let data = try! Data(contentsOf: url)
-                //                let json = String(data: data, encoding: .utf8)
-                
-                //                DispatchQueue.main.async {
-                //                    observer.onNext(json)
-                //                }
             }
             return Disposables.create()
         }

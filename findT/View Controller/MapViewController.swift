@@ -9,6 +9,7 @@ import UIKit
 import MapKit
 import SnapKit
 import CoreLocation
+import SSLog
 
 final class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate, UISearchBarDelegate {
     
@@ -50,6 +51,7 @@ final class MapViewController: UIViewController, CLLocationManagerDelegate, MKMa
     let dobongLoc = CLLocationCoordinate2D(latitude: 37.6658609, longitude: 127.0317674) // 도봉구
     let eunpyeongLoc = CLLocationCoordinate2D(latitude: 37.6176125, longitude: 126.9227004) // 은평구
     let dongdaemoonLoc = CLLocationCoordinate2D(latitude: 37.5838012, longitude: 127.0507003) // 동대문구
+    let gasanLoc = CLLocationCoordinate2D(latitude: 37.481072, longitude: 126.882343) // 가산디지털단지
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,24 +61,8 @@ final class MapViewController: UIViewController, CLLocationManagerDelegate, MKMa
     
     override func viewDidAppear(_ animated: Bool) {
         self.locationErrorProcess()
-        let body = [
-            "serviceKey": INFO.serviceKey,
-            "format": "JSON",
-            "railOprIsttCd": "S1",
-            "lnCd": "3",
-            "stinCd": "322"
-        ]
-        networkManager.downloadJSON(url: API.toiletURL, parameters: body)
-            .subscribe { event in
-                switch event {
-                case let .next(json):
-                    print(json)
-                case .completed:
-                    break
-                case .error:
-                    break
-                }
-            }
+        self.getDPToilet()
+        self.getRouteInformation()
     }
     
     private func initViewProcess() {
@@ -193,6 +179,75 @@ final class MapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         self.findAddr(lat: cordinate.latitude, long: cordinate.longitude)
     }
     
+    // MARK: - APIs
+    
+    private func getDPToilet() {
+        let body = [
+            "serviceKey": INFO.serviceKey,
+            "format": "JSON",
+            "railOprIsttCd": "S1",
+            "lnCd": "3",
+            "stinCd": "322"
+        ]
+        networkManager.downloadJSON(url: API.toiletURL, parameters: body)
+            .subscribe { event in
+                switch event {
+                case let .next(jsonObj):
+                    do {
+                        let jsonData:Data = try JSONEncoder().encode(jsonObj)
+                        let str = String.init(data: jsonData, encoding: .utf8)!.data(using: .utf8)!
+                        let result: DPToilet = try JSONDecoder().decode(DPToilet.self, from: str)
+                        print(result)
+                    } catch {
+                        print("error")
+                    }
+                case .completed:
+                    break
+                case .error:
+                    break
+                }
+            }
+    }
+    
+    private func getRouteInformation() {
+//        let body = [
+//            "serviceKey": INFO.serviceKey,
+//            "format": "JSON",
+//            "railOprIsttCd": "KR",
+//            "lnCd": "1",
+//            "stinCd": "135",
+//            "stinNm": "용산"
+//        ]
+        let body = [
+            "serviceKey": INFO.serviceKey,
+            "format": "JSON",
+            "railOprIsttCd": "KR",
+            "lnCd": "1",
+            "stinCd": "746",
+            "stinNm": "가산디지털단지"
+        ]
+        networkManager.downloadJSON(url: API.informationByStationURL, parameters: body)
+            .subscribe { event in
+                switch event {
+                case let .next(jsonObj):
+                    print(jsonObj)
+//                    do {
+//                        let jsonData:Data = try JSONEncoder().encode(jsonObj)
+//                        let str = String.init(data: jsonData, encoding: .utf8)!.data(using: .utf8)!
+//                        let result: DPToilet = try JSONDecoder().decode(DPToilet.self, from: str)
+//                        print(result)
+//                    } catch {
+//                        print("error")
+//                    }
+                case .completed:
+                    break
+                case .error:
+                    break
+                }
+            }
+    }
+    
+    
     // MARK: - Actions
     
     @objc private func didTapSelfPositionBtn() {
@@ -201,12 +256,8 @@ final class MapViewController: UIViewController, CLLocationManagerDelegate, MKMa
         self.mapView.setUserTrackingMode(.follow, animated: true)
     }
     
-    /// 바깥 영역 터치 시, 키보드 내리기
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
-        self.view.endEditing(true)
-    }
-    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        self.searchMapView(cordinate: dobongLoc, addr: searchBar.searchTextField.text!)
+        //self.searchMapView(cordinate: dobongLoc, addr: searchBar.searchTextField.text!)
+        self.searchMapView(cordinate: gasanLoc, addr: searchBar.searchTextField.text!)
     }
 }

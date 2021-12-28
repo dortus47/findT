@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1A892C4E9D95B95BD5016483 /* libPods-findT.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7382EB9D7B006B6CF57B79AF /* libPods-findT.a */; };
 		A110046E2774A83200FC29AE /* station_coordinate.json in Resources */ = {isa = PBXBuildFile; fileRef = A110046D2774A83200FC29AE /* station_coordinate.json */; };
+		A12EA6AA277B4F8B006C7A52 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12EA6A9277B4F8B006C7A52 /* Extensions.swift */; };
 		A151C4D12774534500E5003E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A151C4D02774534500E5003E /* MapViewController.swift */; };
 		A158D8D82778181700F87F13 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = A158D8D72778181700F87F13 /* Models.swift */; };
 		A15D463027744CE5000AC7BE /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = A15D462F27744CE5000AC7BE /* .swiftlint.yml */; };
@@ -25,6 +26,7 @@
 		7382EB9D7B006B6CF57B79AF /* libPods-findT.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-findT.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		821B6953A13055EEA85A6742 /* Pods-findT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-findT.debug.xcconfig"; path = "Target Support Files/Pods-findT/Pods-findT.debug.xcconfig"; sourceTree = "<group>"; };
 		A110046D2774A83200FC29AE /* station_coordinate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = station_coordinate.json; sourceTree = "<group>"; };
+		A12EA6A9277B4F8B006C7A52 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A151C4D02774534500E5003E /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A158D8D72778181700F87F13 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		A15D462F27744CE5000AC7BE /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 		A1D7D850277545BE008AB38C /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				A12EA6A9277B4F8B006C7A52 /* Extensions.swift */,
 				A1D7D851277545E5008AB38C /* Constants.swift */,
 				A1B7870A2776F57100ED30B7 /* NetworkManager.swift */,
 			);
@@ -261,6 +264,7 @@
 				A158D8D82778181700F87F13 /* Models.swift in Sources */,
 				A18D8C99277438150011660A /* SceneDelegate.swift in Sources */,
 				A151C4D12774534500E5003E /* MapViewController.swift in Sources */,
+				A12EA6AA277B4F8B006C7A52 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

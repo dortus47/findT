@@ -1,0 +1,6 @@
+module SSLog {
+  umbrella header "SSLog-umbrella.h"
+
+  export *
+  module * { export * }
+}
