@@ -15,9 +15,8 @@ final class FileManager {
         if let data = try? String(contentsOfFile: jsonPath).data(using: .utf8) {
                 let json = try! JSONSerialization.jsonObject(with: data, options: []) as! [[String : Any]]
             for jsonIndex in json {
-//                print(jsonIndex)
                 let key = jsonIndex["name"] as! String
-                let value = stationLocation(jsonIndex["lng"] as? String, jsonIndex["lat"] as? String, jsonIndex["code"] as? String, jsonIndex["line"] as? String, jsonIndex["name"] as? String)
+                let value = stationLocation(jsonIndex["lng"] as? Double, jsonIndex["lat"] as? Double, jsonIndex["code"] as? Int, jsonIndex["line"] as? String, jsonIndex["name"] as? String)
                 stationDictionary[key] = value
             }
         }

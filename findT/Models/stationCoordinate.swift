@@ -8,9 +8,9 @@
 import Foundation
 
 struct stationLocation {
-    let lng: String?        // 127.042292
-    let lat: String?        // 37.75938
-    let code: String?       // 1908
+    let lng: Double?        // 127.042292
+    let lat: Double?        // 37.75938
+    let code: Int?       // 1908
     let line: String?       // 01호선
     let name: String?       // 녹양
     
@@ -22,7 +22,7 @@ struct stationLocation {
         self.name = nil
     }
     
-    init(_ lng: String?, _ lat: String?, _ code: String?, _ line: String?, _ name: String?) {
+    init(_ lng: Double?, _ lat: Double?, _ code: Int?, _ line: String?, _ name: String?) {
         self.lng = lng
         self.lat = lat
         self.code = code

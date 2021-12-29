@@ -65,7 +65,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UISearchBarDelegat
         self.locationErrorProcess()
         networkManager.getDPToilet()
         networkManager.getRouteInformation()
-        fileManager.setStationCoordinate()
+        self.addMarker()
     }
     
     private func initViewProcess() {
@@ -143,6 +143,24 @@ class MapViewController: UIViewController, MKMapViewDelegate, UISearchBarDelegat
                     myAdd += name
                 }
             }
+        }
+    }
+    
+    private func addMarker() {
+        fileManager.setStationCoordinate()
+        for stationItem in fileManager.stationDictionary {
+            guard let latitude = stationItem.value.lat else {
+                continue
+            }
+
+            guard let longitude = stationItem.value.lng else {
+                continue
+            }
+            let mark = Marker(
+                title: stationItem.value.name! + "역",
+                     subtitle: "사람이 너무 많아요ㅜ",
+                coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
+           mapView.addAnnotation(mark)
         }
     }
     

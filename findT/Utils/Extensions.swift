@@ -15,3 +15,16 @@ extension UIViewController {
         self.view.endEditing(true)
     }
 }
+
+extension String
+{
+    /// EZSE: Converts String to Double
+    public func toDouble() -> Double?
+    {
+       if let num = NumberFormatter().number(from: self) {
+                return num.doubleValue
+            } else {
+                return nil
+            }
+     }
+}

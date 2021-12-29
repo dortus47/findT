@@ -13,6 +13,7 @@
 		A139EF2D277C313600838BC7 /* SetttingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A139EF2C277C313600838BC7 /* SetttingsTableViewController.swift */; };
 		A139EF2F277C34F400838BC7 /* stationCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A139EF2E277C34F400838BC7 /* stationCoordinate.swift */; };
 		A139EF31277C3A0600838BC7 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A139EF30277C3A0600838BC7 /* FileManager.swift */; };
+		A139EF33277C557500838BC7 /* Marker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A139EF32277C557500838BC7 /* Marker.swift */; };
 		A151C4D12774534500E5003E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A151C4D02774534500E5003E /* MapViewController.swift */; };
 		A158D8D82778181700F87F13 /* DPToilet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A158D8D72778181700F87F13 /* DPToilet.swift */; };
 		A15D463027744CE5000AC7BE /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = A15D462F27744CE5000AC7BE /* .swiftlint.yml */; };
@@ -33,6 +34,7 @@
 		A139EF2C277C313600838BC7 /* SetttingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetttingsTableViewController.swift; sourceTree = "<group>"; };
 		A139EF2E277C34F400838BC7 /* stationCoordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stationCoordinate.swift; sourceTree = "<group>"; };
 		A139EF30277C3A0600838BC7 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
+		A139EF32277C557500838BC7 /* Marker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marker.swift; sourceTree = "<group>"; };
 		A151C4D02774534500E5003E /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A158D8D72778181700F87F13 /* DPToilet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPToilet.swift; sourceTree = "<group>"; };
 		A15D462F27744CE5000AC7BE /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 			children = (
 				A158D8D72778181700F87F13 /* DPToilet.swift */,
 				A139EF2E277C34F400838BC7 /* stationCoordinate.swift */,
+				A139EF32277C557500838BC7 /* Marker.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 				A139EF2F277C34F400838BC7 /* stationCoordinate.swift in Sources */,
 				A139EF31277C3A0600838BC7 /* FileManager.swift in Sources */,
 				A18D8C99277438150011660A /* SceneDelegate.swift in Sources */,
+				A139EF33277C557500838BC7 /* Marker.swift in Sources */,
 				A139EF2D277C313600838BC7 /* SetttingsTableViewController.swift in Sources */,
 				A151C4D12774534500E5003E /* MapViewController.swift in Sources */,
 				A12EA6AA277B4F8B006C7A52 /* Extensions.swift in Sources */,
