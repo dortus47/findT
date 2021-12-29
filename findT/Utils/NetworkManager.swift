@@ -10,7 +10,7 @@ import Alamofire
 import SwiftyJSON
 import RxSwift
 
-class NetWorkManager {
+final class NetWorkManager {
     
     func downloadJSON(url: String, parameters: Dictionary<String, Any>) -> Observable<JSON?>  {
         return Observable.create { observer in
@@ -34,6 +34,58 @@ class NetWorkManager {
             }
             return Disposables.create()
         }
+    }
+    
+    // MARK: - APIs
+    
+    func getDPToilet() {
+        let body = [
+            "serviceKey": INFO.serviceKey,
+            "format": "JSON",
+            "railOprIsttCd": "S1",
+            "lnCd": "3",
+            "stinCd": "322"
+        ]
+        downloadJSON(url: API.toiletURL, parameters: body)
+            .subscribe { event in
+                switch event {
+                case let .next(jsonObj):
+                    do {
+                        let jsonData:Data = try JSONEncoder().encode(jsonObj)
+                        let str = String.init(data: jsonData, encoding: .utf8)!.data(using: .utf8)!
+                        let result: DPToilet = try JSONDecoder().decode(DPToilet.self, from: str)
+                        print(result)
+                    } catch {
+                        print("error")
+                    }
+                case .completed:
+                    break
+                case .error:
+                    break
+                }
+            }
+    }
+    
+    func getRouteInformation() {
+        let body = [
+            "serviceKey": INFO.serviceKey,
+            "format": "JSON",
+            "railOprIsttCd": "KR",
+            "lnCd": "1",
+            "stinCd": "746",
+            "stinNm": "가산디지털단지"
+        ]
+        downloadJSON(url: API.informationByStationURL, parameters: body)
+            .subscribe { event in
+                switch event {
+                case let .next(jsonObj):
+                    print(jsonObj)
+                case .completed:
+                    break
+                case .error:
+                    break
+                }
+            }
     }
     
     //    func requestDPToilet() -> DPToilet {

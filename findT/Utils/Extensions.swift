@@ -11,7 +11,7 @@ import UIKit
 extension UIViewController {
     
     /// 바깥 영역 터치 시, 키보드 내리기
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+    open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         self.view.endEditing(true)
     }
 }
