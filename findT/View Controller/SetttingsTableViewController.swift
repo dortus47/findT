@@ -6,12 +6,17 @@
 //
 
 import UIKit
+import SnapKit
 
 class SetttingsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.view.backgroundColor = .green
+        self.view.snp.makeConstraints { make in
+            let hii = ( self.view.frame.height / 2 )
+            make.height.equalTo(hii)
+        }
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 

@@ -23,9 +23,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z5V-rL-fos" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1030" y="-599"/>
+            <point key="canvasLocation" x="-88" y="339"/>
         </scene>
-        <!--Item-->
+        <!--Map-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="findT" customModuleProvider="target" sceneMemberID="viewController">
@@ -35,11 +35,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="URP-EN-rGM"/>
+                    <tabBarItem key="tabBarItem" title="Map" id="URP-EN-rGM"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1039.1304347826087" y="93.75"/>
+            <point key="canvasLocation" x="-1023" y="339"/>
         </scene>
         <!--Item-->
         <scene sceneID="E4X-mJ-bT6">
@@ -55,7 +55,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Ie-mO-8jM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1039" y="848"/>
+            <point key="canvasLocation" x="814" y="339"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="2N5-AE-A3o">
@@ -63,6 +63,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Epn-Ed-uLO" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Wsz-6a-saH">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
@@ -74,7 +75,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Lq-3s-Qr7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="128.98550724637681" y="93.75"/>
+            <point key="canvasLocation" x="-88" y="-386"/>
         </scene>
     </scenes>
     <resources>

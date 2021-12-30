@@ -161,7 +161,7 @@ class MapViewController: UIViewController, UISearchBarDelegate {
                 title: stationItem.value.name! + "역",
                 subtitle: stationItem.value.line!,
                 coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude),
-                pinTintColor: stationItem.value.line!.getLineUIColor()
+                pinTintColor: colorManager.lineDictionary[stationItem.value.line!] ?? UIColor(red: 0.00, green: 0.00, blue: 0.00, alpha: 1.00)
             )
            mapView.addAnnotation(mark)
         }
@@ -177,6 +177,8 @@ class MapViewController: UIViewController, UISearchBarDelegate {
     // MARK: - Actions
 
     @objc private func didTapSelfPositionBtn() {
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
         self.mapView.showsUserLocation = true
         self.mapView.setUserTrackingMode(.follow, animated: true)
     }
@@ -238,7 +240,21 @@ extension MapViewController: MKMapViewDelegate {
         if let annotation = annotation as? Marker {
             annotationView.markerTintColor = annotation.pinTintColor
         }
-
+        let button = UIButton(type:.detailDisclosure)
+        button.snp.makeConstraints { make in
+            make.height.width.equalTo(50)
+        }
+        annotationView.leftCalloutAccessoryView = button
         return annotationView
+    }
+    
+    // 해당 마커 클릭 동작 로직
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        let region = MKCoordinateRegion(center: view.annotation!.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        self.mapView.setRegion(region, animated: true)
+//        let pushViewContoller = SetttingsTableViewController()
+//        self.present(pushViewContoller, animated: true, completion: nil)
+
+//        self.navigationController?.pushViewController(pushViewContoller, animated: true)
     }
 }
