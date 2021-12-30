@@ -23,6 +23,7 @@
 		A18D8CA0277438170011660A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A18D8C9F277438170011660A /* Assets.xcassets */; };
 		A18D8CA3277438170011660A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A18D8CA1277438170011660A /* LaunchScreen.storyboard */; };
 		A1B7870B2776F57200ED30B7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B7870A2776F57100ED30B7 /* NetworkManager.swift */; };
+		A1C6A9BC277D73A000134615 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C6A9BB277D73A000134615 /* ColorManager.swift */; };
 		A1D7D852277545E5008AB38C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D7D851277545E5008AB38C /* Constants.swift */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,7 @@
 		A18D8CA2277438170011660A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A18D8CA4277438170011660A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A1B7870A2776F57100ED30B7 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		A1C6A9BB277D73A000134615 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		A1D7D851277545E5008AB38C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C9AFC4FAADC54057EACD9C1E /* Pods-findT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-findT.release.xcconfig"; path = "Target Support Files/Pods-findT/Pods-findT.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -149,6 +151,7 @@
 				A1D7D851277545E5008AB38C /* Constants.swift */,
 				A1B7870A2776F57100ED30B7 /* NetworkManager.swift */,
 				A139EF30277C3A0600838BC7 /* FileManager.swift */,
+				A1C6A9BB277D73A000134615 /* ColorManager.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				A1D7D852277545E5008AB38C /* Constants.swift in Sources */,
 				A18D8C97277438150011660A /* AppDelegate.swift in Sources */,
 				A1B7870B2776F57200ED30B7 /* NetworkManager.swift in Sources */,
+				A1C6A9BC277D73A000134615 /* ColorManager.swift in Sources */,
 				A158D8D82778181700F87F13 /* DPToilet.swift in Sources */,
 				A139EF2F277C34F400838BC7 /* stationCoordinate.swift in Sources */,
 				A139EF31277C3A0600838BC7 /* FileManager.swift in Sources */,

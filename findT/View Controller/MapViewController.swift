@@ -10,7 +10,7 @@ import MapKit
 import SnapKit
 import CoreLocation
 
-class MapViewController: UIViewController, MKMapViewDelegate, UISearchBarDelegate {
+class MapViewController: UIViewController, UISearchBarDelegate {
     
     lazy var mapView: MKMapView = {
         var mapView = MKMapView()
@@ -44,13 +44,11 @@ class MapViewController: UIViewController, MKMapViewDelegate, UISearchBarDelegat
     
     lazy var fileManager: FileManager = FileManager()
     lazy var networkManager: NetWorkManager = NetWorkManager()
+    lazy var colorManager: ColorManager = ColorManager()
     lazy var locationManager: CLLocationManager = CLLocationManager() /// location manager
     var currentLocation: CLLocation! /// 내 위치 저장
 
     
-    let dobongLoc = CLLocationCoordinate2D(latitude: 37.6658609, longitude: 127.0317674) // 도봉구
-    let eunpyeongLoc = CLLocationCoordinate2D(latitude: 37.6176125, longitude: 126.9227004) // 은평구
-    let dongdaemoonLoc = CLLocationCoordinate2D(latitude: 37.5838012, longitude: 127.0507003) // 동대문구
     let gasanLoc = CLLocationCoordinate2D(latitude: 37.481072, longitude: 126.882343) // 가산디지털단지
     
     // MARK: - Life Cycles
@@ -62,15 +60,16 @@ class MapViewController: UIViewController, MKMapViewDelegate, UISearchBarDelegat
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
         self.locationErrorProcess()
-        networkManager.getDPToilet()
-        networkManager.getRouteInformation()
         self.addMarker()
     }
     
     private func initViewProcess() {
         searchBar.delegate = self
         locationManager.delegate = self
+        mapView.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
@@ -126,7 +125,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UISearchBarDelegat
         }
     }
     
-    /// 위도, 경도에 따른 주소 찾기
+    // 위도, 경도에 따른 주소 찾기
     private func findAddr(lat: CLLocationDegrees, long: CLLocationDegrees) {
         let findLocation = CLLocation(latitude: lat, longitude: long)
         let geocoder = CLGeocoder()
@@ -146,6 +145,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UISearchBarDelegat
         }
     }
     
+    // station_cordinate.json 파싱, 모든 역 핀업 추가
     private func addMarker() {
         fileManager.setStationCoordinate()
         for stationItem in fileManager.stationDictionary {
@@ -156,23 +156,21 @@ class MapViewController: UIViewController, MKMapViewDelegate, UISearchBarDelegat
             guard let longitude = stationItem.value.lng else {
                 continue
             }
+            
             let mark = Marker(
                 title: stationItem.value.name! + "역",
-                     subtitle: "사람이 너무 많아요ㅜ",
-                coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
+                subtitle: stationItem.value.line!,
+                coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude),
+                pinTintColor: stationItem.value.line!.getLineUIColor()
+            )
            mapView.addAnnotation(mark)
         }
     }
     
-    /// 검색된 위치로 이동 & marker 추가
+    // 검색된 위치로 이동
     private func searchMapView(cordinate: CLLocationCoordinate2D, addr: String) {
         let region = MKCoordinateRegion(center: cordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         self.mapView.setRegion(region, animated: true)
-        
-        let anootation = MKPointAnnotation()
-        anootation.coordinate = cordinate
-        anootation.title = addr
-        self.mapView.addAnnotation(anootation)
         self.findAddr(lat: cordinate.latitude, long: cordinate.longitude)
     }
     
@@ -183,8 +181,27 @@ class MapViewController: UIViewController, MKMapViewDelegate, UISearchBarDelegat
         self.mapView.setUserTrackingMode(.follow, animated: true)
     }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        self.searchMapView(cordinate: gasanLoc, addr: searchBar.searchTextField.text!)
+    // 검색버튼 이벤트, 검색창에 역을 붙이거나 붙이지 않아도 같은 결과를 얻도록 전처리
+    internal func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        var text = searchBar.searchTextField.text!
+        if text.lastString == "역" {
+            text = String(text.dropLast(1))
+        }
+        
+        guard let stationName = fileManager.stationDictionary[text]?.name else {
+            return
+        }
+        
+        guard let latitude = fileManager.stationDictionary[text]?.lat else {
+            return
+        }
+
+        guard let longitude = fileManager.stationDictionary[text]?.lng else {
+            return
+        }
+        
+        let loc = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        self.searchMapView(cordinate: loc, addr: stationName)
     }
 }
 
@@ -211,5 +228,17 @@ extension MapViewController: CLLocationManagerDelegate {
         default :
             break
         }
+    }
+}
+
+extension MapViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let annotationView = MKMarkerAnnotationView()
+
+        if let annotation = annotation as? Marker {
+            annotationView.markerTintColor = annotation.pinTintColor
+        }
+
+        return annotationView
     }
 }

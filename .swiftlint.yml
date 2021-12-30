@@ -26,6 +26,8 @@ disabled_rules: # rule identifiers to exclude from running
     - syntactic_sugar
     - vertical_whitespace
     - force_cast
+    - cyclomatic_complexity
+    - implicit_getter
 
 opt_in_rules: # some rules are only opt-in
     - empty_count
