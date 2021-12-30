@@ -81,8 +81,6 @@ class MapViewController: UIViewController, UISearchBarDelegate {
         mapView.snp.makeConstraints { make in
             make.width.equalToSuperview()
             make.height.equalToSuperview()
-            let tabBarHeight = self.tabBarController!.tabBar.frame.size.height * -1
-            make.bottom.equalToSuperview().offset(tabBarHeight)
         }
         
         self.view.addSubview(selfPositionBtn)
@@ -125,26 +123,6 @@ class MapViewController: UIViewController, UISearchBarDelegate {
         }
     }
     
-    // 위도, 경도에 따른 주소 찾기
-    private func findAddr(lat: CLLocationDegrees, long: CLLocationDegrees) {
-        let findLocation = CLLocation(latitude: lat, longitude: long)
-        let geocoder = CLGeocoder()
-        let locale = Locale(identifier: "Ko-kr")
-        
-        geocoder.reverseGeocodeLocation(findLocation, preferredLocale: locale) { (placemarks, _) in
-            if let address: [CLPlacemark] = placemarks {
-                var myAdd: String =  ""
-                if let area: String = address.last?.locality {
-                    myAdd += area
-                }
-                if let name: String = address.last?.name {
-                    myAdd += " "
-                    myAdd += name
-                }
-            }
-        }
-    }
-    
     // station_cordinate.json 파싱, 모든 역 핀업 추가
     private func addMarker() {
         fileManager.setStationCoordinate()
@@ -171,13 +149,11 @@ class MapViewController: UIViewController, UISearchBarDelegate {
     private func searchMapView(cordinate: CLLocationCoordinate2D, addr: String) {
         let region = MKCoordinateRegion(center: cordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         self.mapView.setRegion(region, animated: true)
-        self.findAddr(lat: cordinate.latitude, long: cordinate.longitude)
     }
     
     // MARK: - Actions
 
     @objc private func didTapSelfPositionBtn() {
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         self.mapView.showsUserLocation = true
         self.mapView.setUserTrackingMode(.follow, animated: true)
@@ -250,11 +226,20 @@ extension MapViewController: MKMapViewDelegate {
     
     // 해당 마커 클릭 동작 로직
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        let region = MKCoordinateRegion(center: view.annotation!.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        let upPosition = CLLocationCoordinate2D(latitude: view.annotation!.coordinate.latitude - MAPINFO.upLatitude, longitude: view.annotation!.coordinate.longitude)
+        let region = MKCoordinateRegion(center: upPosition, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         self.mapView.setRegion(region, animated: true)
-//        let pushViewContoller = SetttingsTableViewController()
-//        self.present(pushViewContoller, animated: true, completion: nil)
-
-//        self.navigationController?.pushViewController(pushViewContoller, animated: true)
+        
+        let vc = StationInfoViewController()
+        if #available(iOS 15.0, *) {
+            if let presentationController = vc.presentationController as? UISheetPresentationController {
+                presentationController.detents = [.medium()]
+                self.present(vc, animated: true)
+            }
+        } else {
+            // Fallback on earlier versions
+            vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+            self.present(vc, animated: true, completion: nil)
+        }
     }
 }

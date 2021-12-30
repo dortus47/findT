@@ -27,3 +27,7 @@ enum API {
     
     static let header: HTTPHeaders = ["Content-Type":"application/json; charset=utf-8", "Accept":"application/json; charset=utf-8"]
 }
+
+enum MAPINFO {
+    static let upLatitude: Double = 0.0013
+}

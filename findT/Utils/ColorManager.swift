@@ -9,6 +9,9 @@ import Foundation
 import UIKit
 
 class ColorManager {
+    
+    let mainColor: UIColor = UIColor(red: 0.40, green: 0.40, blue: 0.67, alpha: 1.00)
+    
     let lineDictionary: [String: UIColor] = [
         "01호선" : UIColor(red: 0.05, green: 0.20, blue: 0.50, alpha: 1.00),
         "02호선" : UIColor(red: 0.00, green: 0.62, blue: 0.24, alpha: 1.00),
