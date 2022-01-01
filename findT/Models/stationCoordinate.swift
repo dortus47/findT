@@ -10,7 +10,7 @@ import Foundation
 struct stationLocation {
     let lng: Double?        // 127.042292
     let lat: Double?        // 37.75938
-    let code: Int?       // 1908
+    let code: Int?          // 1908
     let line: String?       // 01호선
     let name: String?       // 녹양
     

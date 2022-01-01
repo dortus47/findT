@@ -8,7 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1A892C4E9D95B95BD5016483 /* libPods-findT.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7382EB9D7B006B6CF57B79AF /* libPods-findT.a */; };
-		A110046E2774A83200FC29AE /* station_coordinate.json in Resources */ = {isa = PBXBuildFile; fileRef = A110046D2774A83200FC29AE /* station_coordinate.json */; };
+		A1227982277F23C900E9D6FF /* station_coordinate.json in Resources */ = {isa = PBXBuildFile; fileRef = A1227980277F23C900E9D6FF /* station_coordinate.json */; };
+		A1227983277F23C900E9D6FF /* station_code_info.json in Resources */ = {isa = PBXBuildFile; fileRef = A1227981277F23C900E9D6FF /* station_code_info.json */; };
+		A1227985277F298600E9D6FF /* stationCodeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1227984277F298600E9D6FF /* stationCodeInfo.swift */; };
 		A12EA6AA277B4F8B006C7A52 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12EA6A9277B4F8B006C7A52 /* Extensions.swift */; };
 		A139EF2D277C313600838BC7 /* SetttingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A139EF2C277C313600838BC7 /* SetttingsTableViewController.swift */; };
 		A139EF2F277C34F400838BC7 /* stationCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A139EF2E277C34F400838BC7 /* stationCoordinate.swift */; };
@@ -26,12 +28,15 @@
 		A1B7870B2776F57200ED30B7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B7870A2776F57100ED30B7 /* NetworkManager.swift */; };
 		A1C6A9BC277D73A000134615 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C6A9BB277D73A000134615 /* ColorManager.swift */; };
 		A1D7D852277545E5008AB38C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D7D851277545E5008AB38C /* Constants.swift */; };
+		A1EE4EAB277ED88300D3C86D /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EE4EAA277ED88300D3C86D /* SettingTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7382EB9D7B006B6CF57B79AF /* libPods-findT.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-findT.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		821B6953A13055EEA85A6742 /* Pods-findT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-findT.debug.xcconfig"; path = "Target Support Files/Pods-findT/Pods-findT.debug.xcconfig"; sourceTree = "<group>"; };
-		A110046D2774A83200FC29AE /* station_coordinate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = station_coordinate.json; sourceTree = "<group>"; };
+		A1227980277F23C900E9D6FF /* station_coordinate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = station_coordinate.json; sourceTree = "<group>"; };
+		A1227981277F23C900E9D6FF /* station_code_info.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = station_code_info.json; sourceTree = "<group>"; };
+		A1227984277F298600E9D6FF /* stationCodeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stationCodeInfo.swift; sourceTree = "<group>"; };
 		A12EA6A9277B4F8B006C7A52 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A139EF2C277C313600838BC7 /* SetttingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetttingsTableViewController.swift; sourceTree = "<group>"; };
 		A139EF2E277C34F400838BC7 /* stationCoordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stationCoordinate.swift; sourceTree = "<group>"; };
@@ -51,6 +56,7 @@
 		A1B7870A2776F57100ED30B7 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		A1C6A9BB277D73A000134615 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		A1D7D851277545E5008AB38C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A1EE4EAA277ED88300D3C86D /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		C9AFC4FAADC54057EACD9C1E /* Pods-findT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-findT.release.xcconfig"; path = "Target Support Files/Pods-findT/Pods-findT.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -86,7 +92,8 @@
 		A110046C2774A80F00FC29AE /* Files */ = {
 			isa = PBXGroup;
 			children = (
-				A110046D2774A83200FC29AE /* station_coordinate.json */,
+				A1227981277F23C900E9D6FF /* station_code_info.json */,
+				A1227980277F23C900E9D6FF /* station_coordinate.json */,
 			);
 			path = Files;
 			sourceTree = "<group>";
@@ -96,6 +103,7 @@
 			children = (
 				A158D8D72778181700F87F13 /* DPToilet.swift */,
 				A139EF2E277C34F400838BC7 /* stationCoordinate.swift */,
+				A1227984277F298600E9D6FF /* stationCodeInfo.swift */,
 				A139EF32277C557500838BC7 /* Marker.swift */,
 			);
 			path = Models;
@@ -126,6 +134,7 @@
 				A158D8D6277817F500F87F13 /* Models */,
 				A1D7D850277545BE008AB38C /* Utils */,
 				A110046C2774A80F00FC29AE /* Files */,
+				A1EE4EA9277ED7DB00D3C86D /* Cells */,
 				A18D8CAA277446020011660A /* View Controller */,
 				A18D8C96277438150011660A /* AppDelegate.swift */,
 				A18D8C98277438150011660A /* SceneDelegate.swift */,
@@ -157,6 +166,14 @@
 				A1C6A9BB277D73A000134615 /* ColorManager.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		A1EE4EA9277ED7DB00D3C86D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				A1EE4EAA277ED88300D3C86D /* SettingTableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -222,8 +239,9 @@
 				A15D463027744CE5000AC7BE /* .swiftlint.yml in Resources */,
 				A18D8CA3277438170011660A /* LaunchScreen.storyboard in Resources */,
 				A18D8CA0277438170011660A /* Assets.xcassets in Resources */,
-				A110046E2774A83200FC29AE /* station_coordinate.json in Resources */,
+				A1227982277F23C900E9D6FF /* station_coordinate.json in Resources */,
 				A18D8C9E277438150011660A /* Main.storyboard in Resources */,
+				A1227983277F23C900E9D6FF /* station_code_info.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,12 +296,14 @@
 			files = (
 				A1D7D852277545E5008AB38C /* Constants.swift in Sources */,
 				A18D8C97277438150011660A /* AppDelegate.swift in Sources */,
+				A1EE4EAB277ED88300D3C86D /* SettingTableViewCell.swift in Sources */,
 				A1B7870B2776F57200ED30B7 /* NetworkManager.swift in Sources */,
 				A146AC5A277DD662007B5CF9 /* StationInfoViewController.swift in Sources */,
 				A1C6A9BC277D73A000134615 /* ColorManager.swift in Sources */,
 				A158D8D82778181700F87F13 /* DPToilet.swift in Sources */,
 				A139EF2F277C34F400838BC7 /* stationCoordinate.swift in Sources */,
 				A139EF31277C3A0600838BC7 /* FileManager.swift in Sources */,
+				A1227985277F298600E9D6FF /* stationCodeInfo.swift in Sources */,
 				A18D8C99277438150011660A /* SceneDelegate.swift in Sources */,
 				A139EF33277C557500838BC7 /* Marker.swift in Sources */,
 				A139EF2D277C313600838BC7 /* SetttingsTableViewController.swift in Sources */,

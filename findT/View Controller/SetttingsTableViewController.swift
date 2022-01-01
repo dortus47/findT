@@ -9,26 +9,12 @@ import UIKit
 import SnapKit
 
 class SetttingsTableViewController: UITableViewController {
+    
+    let tempTitle = ["임시1", "임시2", "임시3"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .gray
-        self.title = "옵션"
-        
-//        self.tableView.snp.makeConstraints { make in
-//            make.width.equalToSuperview()
-//            make.height.equalToSuperview()
-//            let tabBarHeight = self.tabBarController!.tabBar.frame.size.height * -1
-//            make.bottomMargin().rawValue = tabBarHeight
-//        }
-//        self.view.snp.makeConstraints { make in
-//
-//        }
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        self.view.backgroundColor = .white
     }
 
     // MARK: - Table view data source
@@ -40,14 +26,12 @@ class SetttingsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 3
+        return tempTitle.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-        let cell = UITableViewCell()
-        cell.isEditing = true
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: SettingTableViewCell.identifier, for: indexPath) as! SettingTableViewCell
+        cell.settingLabel.text = tempTitle[indexPath.row]
         return cell
     }
 

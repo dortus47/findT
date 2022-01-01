@@ -21,7 +21,7 @@ enum INFO {
 enum API {
     static let toiletURL: String = "http://openapi.kric.go.kr/openapi/vulnerableUserInfo/stationDisabledToilet"
     
-    static let entireRouteURL: String = "http://openapi.kric.go.kr/openapi/trainUseInfo/subwayRouteInfo"
+    static let subwayRouteInfoURL: String = "http://openapi.kric.go.kr/openapi/trainUseInfo/subwayRouteInfo"
     
     static let informationByStationURL: String = "http://openapi.kric.go.kr/openapi/convenientInfo/stationInfo"
     

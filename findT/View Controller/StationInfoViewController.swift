@@ -9,6 +9,8 @@ import UIKit
 import SnapKit
 
 class StationInfoViewController: UIViewController {
+    
+    let netWorkManager: NetWorkManager = NetWorkManager()
 
     // MARK: - Life Cycles
     
@@ -20,6 +22,6 @@ class StationInfoViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
+        netWorkManager.getStationInfo(lineCode: "I2")
     }
 }

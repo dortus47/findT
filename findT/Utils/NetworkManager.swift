@@ -88,6 +88,32 @@ final class NetWorkManager {
             }
     }
     
+    func getStationInfo(lineCode: String) {
+        let body = [
+            "serviceKey": INFO.serviceKey,
+            "format": "JSON",
+            "lnCd": lineCode,
+            "mreaWideCd": "02"
+        ]
+        downloadJSON(url: API.subwayRouteInfoURL, parameters: body)
+            .subscribe { event in
+                switch event {
+                case let .next(jsonObj):
+                    do {
+                        let jsonData:Data = try JSONEncoder().encode(jsonObj)
+                        let str = String.init(data: jsonData, encoding: .utf8)!.data(using: .utf8)!
+                        print(str)
+                    } catch {
+                        print("error")
+                    }
+                case .completed:
+                    break
+                case .error:
+                    break
+                }
+            }
+    }
+    
     //    func requestDPToilet() -> DPToilet {
     //        var toilet: DPToilet = DPToilet()
     //

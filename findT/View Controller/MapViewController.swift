@@ -47,9 +47,6 @@ class MapViewController: UIViewController, UISearchBarDelegate {
     lazy var colorManager: ColorManager = ColorManager()
     lazy var locationManager: CLLocationManager = CLLocationManager() /// location manager
     var currentLocation: CLLocation! /// 내 위치 저장
-
-    
-    let gasanLoc = CLLocationCoordinate2D(latitude: 37.481072, longitude: 126.882343) // 가산디지털단지
     
     // MARK: - Life Cycles
     
@@ -57,6 +54,7 @@ class MapViewController: UIViewController, UISearchBarDelegate {
         super.viewDidLoad()
         
         self.initViewProcess()
+        fileManager.loadFileDataProcess()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -125,8 +123,7 @@ class MapViewController: UIViewController, UISearchBarDelegate {
     
     // station_cordinate.json 파싱, 모든 역 핀업 추가
     private func addMarker() {
-        fileManager.setStationCoordinate()
-        for stationItem in fileManager.stationDictionary {
+        for stationItem in fileManager.stationCordinateDictionary {
             guard let latitude = stationItem.value.lat else {
                 continue
             }
@@ -166,15 +163,15 @@ class MapViewController: UIViewController, UISearchBarDelegate {
             text = String(text.dropLast(1))
         }
         
-        guard let stationName = fileManager.stationDictionary[text]?.name else {
+        guard let stationName = fileManager.stationCordinateDictionary[text]?.name else {
             return
         }
         
-        guard let latitude = fileManager.stationDictionary[text]?.lat else {
+        guard let latitude = fileManager.stationCordinateDictionary[text]?.lat else {
             return
         }
 
-        guard let longitude = fileManager.stationDictionary[text]?.lng else {
+        guard let longitude = fileManager.stationCordinateDictionary[text]?.lng else {
             return
         }
         
