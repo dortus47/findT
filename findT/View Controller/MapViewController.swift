@@ -64,6 +64,8 @@ class MapViewController: UIViewController, UISearchBarDelegate {
         self.addMarker()
     }
     
+    // MARK: - SnapKit
+    
     private func initViewProcess() {
         searchBar.delegate = self
         locationManager.delegate = self
@@ -127,7 +129,7 @@ class MapViewController: UIViewController, UISearchBarDelegate {
             guard let latitude = stationItem.value.lat else {
                 continue
             }
-
+            
             guard let longitude = stationItem.value.lng else {
                 continue
             }
@@ -138,7 +140,7 @@ class MapViewController: UIViewController, UISearchBarDelegate {
                 coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude),
                 pinTintColor: colorManager.lineDictionary[stationItem.value.line!] ?? UIColor(red: 0.00, green: 0.00, blue: 0.00, alpha: 1.00)
             )
-           mapView.addAnnotation(mark)
+            mapView.addAnnotation(mark)
         }
     }
     
@@ -149,7 +151,7 @@ class MapViewController: UIViewController, UISearchBarDelegate {
     }
     
     // MARK: - Actions
-
+    
     @objc private func didTapSelfPositionBtn() {
         locationManager.requestWhenInUseAuthorization()
         self.mapView.showsUserLocation = true
@@ -170,7 +172,7 @@ class MapViewController: UIViewController, UISearchBarDelegate {
         guard let latitude = fileManager.stationCordinateDictionary[text]?.lat else {
             return
         }
-
+        
         guard let longitude = fileManager.stationCordinateDictionary[text]?.lng else {
             return
         }
@@ -209,7 +211,7 @@ extension MapViewController: CLLocationManagerDelegate {
 extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let annotationView = MKMarkerAnnotationView()
-
+        
         if let annotation = annotation as? Marker {
             annotationView.markerTintColor = annotation.pinTintColor
         }
@@ -227,43 +229,49 @@ extension MapViewController: MKMapViewDelegate {
         let region = MKCoordinateRegion(center: upPosition, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         self.mapView.setRegion(region, animated: true)
         
+        // 클릭한 마커가 자기 자신의 위치일 경우, 아래 로직은 실행하지 않고 종료.
+        if view.annotation?.title == "My Location" {
+            return
+        }
+        
         var text: String = view.annotation!.title! ?? ""
         if text.lastString == "역" {
             text = String(text.dropLast(1))
         }
         
+        // 역 코드 정보 dic은 subtitle과 tilte의 합(LN_NM + STIN_NM)
         let key = (view.annotation!.subtitle! ?? "") + (text)
         let info = fileManager.stationCodeInfoDictionary[key]
-        print(key, info)
         
         let lnCd: String? = info?.LN_CD // 선코드
         let railOprIsttCd: String? = info?.RAIL_OPR_ISTT_CD // 철도운영기관코드
         let stinCd: String? = info?.STIN_CD // 역코드
-
+        
         let toilet = networkManager.getDPToilet(railOprIsttCd: railOprIsttCd, lnCd: lnCd, stinCd: stinCd)
         
-//        guard let toilet = toilet else {
-//            
-//        }
+        guard let toilet = toilet else {
+            let alert = UIAlertController(title:"조회된 데이터가 없습니다.",
+                                          message: nil,
+                                          preferredStyle: UIAlertController.Style.alert
+            )
+            let cancle = UIAlertAction(title: "확인", style: .default, handler: nil)
+            alert.addAction(cancle)
+            present(alert,animated: true,completion: nil)
+            return
+        }
         
-        let alert = UIAlertController(title:"조회된 데이터가 없습니다.",
-            message: nil,
-            preferredStyle: UIAlertController.Style.alert
-        )
-        let cancle = UIAlertAction(title: "확인", style: .default, handler: nil)
-        alert.addAction(cancle)
-        present(alert,animated: true,completion: nil)
-        
-//        let vc = StationInfoViewController()
-//            if #available(iOS 15.0, *) {
-//                if let presentationController = vc.presentationController as? UISheetPresentationController {
-//                    presentationController.detents = [.medium()]
-//                    self.present(vc, animated: true)
-//                }
-//            } else {
-//                // Fallback on earlier versions
-//                vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-//                self.present(vc, animated: true, completion: nil)
-//            }
+        let vc = StationInfoViewController()
+        vc.toiletInfo = toilet
+
+        if #available(iOS 15.0, *) {
+            if let presentationController = vc.presentationController as? UISheetPresentationController {
+                presentationController.detents = [.medium()]
+                self.present(vc, animated: true)
+            }
+        } else {
+            // Fallback on earlier versions
+            vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+            self.present(vc, animated: true, completion: nil)
+        }
     }
 }

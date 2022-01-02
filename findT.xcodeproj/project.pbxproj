@@ -89,6 +89,13 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		A104AB9B27819C20002F40EA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		A110046C2774A80F00FC29AE /* Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -134,6 +141,7 @@
 				A158D8D6277817F500F87F13 /* Models */,
 				A1D7D850277545BE008AB38C /* Utils */,
 				A110046C2774A80F00FC29AE /* Files */,
+				A104AB9B27819C20002F40EA /* Views */,
 				A1EE4EA9277ED7DB00D3C86D /* Cells */,
 				A18D8CAA277446020011660A /* View Controller */,
 				A18D8C96277438150011660A /* AppDelegate.swift */,

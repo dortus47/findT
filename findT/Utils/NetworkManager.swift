@@ -12,6 +12,8 @@ import RxSwift
 
 final class NetWorkManager {
     
+    let disposeBag = DisposeBag()
+    
     func downloadJSON(url: String, parameters: Dictionary<String, Any>) -> Observable<JSON?>  {
         return Observable.create { observer in
             DispatchQueue.global().async {
@@ -60,7 +62,7 @@ final class NetWorkManager {
             "lnCd": lnCd,
             "stinCd": stinCd
         ]
-        downloadJSON(url: API.toiletURL, parameters: body)
+        downloadJSON(url: API.stationDisabledToiletURL, parameters: body)
             .subscribe { event in
                 switch event {
                 case let .next(jsonObj):
@@ -77,7 +79,7 @@ final class NetWorkManager {
                 case .error:
                     break
                 }
-            }
+            }.disposed(by: disposeBag)
         return toilet
     }
 }
