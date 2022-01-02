@@ -38,13 +38,27 @@ final class NetWorkManager {
     
     // MARK: - APIs
     
-    func getDPToilet() {
+    func getDPToilet(railOprIsttCd: String?, lnCd: String?, stinCd: String?) -> DPToilet? {
+        guard let railOprIsttCd = railOprIsttCd else {
+            return nil
+        }
+        
+        guard let lnCd = lnCd else {
+            return nil
+        }
+        
+        guard let stinCd = stinCd else {
+            return nil
+        }
+        
+        var toilet: DPToilet = DPToilet()
+        
         let body = [
             "serviceKey": INFO.serviceKey,
             "format": "JSON",
-            "railOprIsttCd": "S1",
-            "lnCd": "3",
-            "stinCd": "322"
+            "railOprIsttCd": railOprIsttCd,
+            "lnCd": lnCd,
+            "stinCd": stinCd
         ]
         downloadJSON(url: API.toiletURL, parameters: body)
             .subscribe { event in
@@ -54,7 +68,7 @@ final class NetWorkManager {
                         let jsonData:Data = try JSONEncoder().encode(jsonObj)
                         let str = String.init(data: jsonData, encoding: .utf8)!.data(using: .utf8)!
                         let result: DPToilet = try JSONDecoder().decode(DPToilet.self, from: str)
-                        print(result)
+                        toilet = result
                     } catch {
                         print("error")
                     }
@@ -64,88 +78,6 @@ final class NetWorkManager {
                     break
                 }
             }
+        return toilet
     }
-    
-    func getRouteInformation() {
-        let body = [
-            "serviceKey": INFO.serviceKey,
-            "format": "JSON",
-            "railOprIsttCd": "KR",
-            "lnCd": "1",
-            "stinCd": "746",
-            "stinNm": "가산디지털단지"
-        ]
-        downloadJSON(url: API.informationByStationURL, parameters: body)
-            .subscribe { event in
-                switch event {
-                case let .next(jsonObj):
-                    print(jsonObj)
-                case .completed:
-                    break
-                case .error:
-                    break
-                }
-            }
-    }
-    
-    func getStationInfo(lineCode: String) {
-        let body = [
-            "serviceKey": INFO.serviceKey,
-            "format": "JSON",
-            "lnCd": lineCode,
-            "mreaWideCd": "02"
-        ]
-        downloadJSON(url: API.subwayRouteInfoURL, parameters: body)
-            .subscribe { event in
-                switch event {
-                case let .next(jsonObj):
-                    do {
-                        let jsonData:Data = try JSONEncoder().encode(jsonObj)
-                        let str = String.init(data: jsonData, encoding: .utf8)!.data(using: .utf8)!
-                        print(str)
-                    } catch {
-                        print("error")
-                    }
-                case .completed:
-                    break
-                case .error:
-                    break
-                }
-            }
-    }
-    
-    //    func requestDPToilet() -> DPToilet {
-    //        var toilet: DPToilet = DPToilet()
-    //
-    //        AF.request(API.toiletURL,
-    //                   method: .get,
-    //                   parameters: [
-    //                    "serviceKey": INFO.serviceKey,
-    //                    "format": "JSON",
-    //                    "railOprIsttCd": "S1",
-    //                    "lnCd": "3",
-    //                    "stinCd": "322"
-    //                   ],
-    //                   encoding: URLEncoding.default,
-    //                   headers: API.header)
-    //            .validate(statusCode: 200..<300)
-    //            .responseJSON { response in
-    //                switch response.result {
-    //                case .success(let res):
-    //                    let jsonObj = JSON(res)["body"][0]
-    //                    do {
-    //                        let jsonData:Data = try JSONEncoder().encode(jsonObj)
-    //                        let str = String.init(data: jsonData, encoding: .utf8)!.data(using: .utf8)!
-    //                        let result: DPToilet = try JSONDecoder().decode(DPToilet.self, from: str)
-    //                        toilet = result
-    //                    } catch {
-    //                        print("error")
-    //                    }
-    //                case .failure(let err):
-    //                    print(err.localizedDescription)
-    //                }
-    //            }
-    //        print(toilet)
-    //        return toilet
-    //    }
 }

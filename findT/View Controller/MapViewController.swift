@@ -227,16 +227,43 @@ extension MapViewController: MKMapViewDelegate {
         let region = MKCoordinateRegion(center: upPosition, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         self.mapView.setRegion(region, animated: true)
         
-        let vc = StationInfoViewController()
-        if #available(iOS 15.0, *) {
-            if let presentationController = vc.presentationController as? UISheetPresentationController {
-                presentationController.detents = [.medium()]
-                self.present(vc, animated: true)
-            }
-        } else {
-            // Fallback on earlier versions
-            vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-            self.present(vc, animated: true, completion: nil)
+        var text: String = view.annotation!.title! ?? ""
+        if text.lastString == "역" {
+            text = String(text.dropLast(1))
         }
+        
+        let key = (view.annotation!.subtitle! ?? "") + (text)
+        let info = fileManager.stationCodeInfoDictionary[key]
+        print(key, info)
+        
+        let lnCd: String? = info?.LN_CD // 선코드
+        let railOprIsttCd: String? = info?.RAIL_OPR_ISTT_CD // 철도운영기관코드
+        let stinCd: String? = info?.STIN_CD // 역코드
+
+        let toilet = networkManager.getDPToilet(railOprIsttCd: railOprIsttCd, lnCd: lnCd, stinCd: stinCd)
+        
+//        guard let toilet = toilet else {
+//            
+//        }
+        
+        let alert = UIAlertController(title:"조회된 데이터가 없습니다.",
+            message: nil,
+            preferredStyle: UIAlertController.Style.alert
+        )
+        let cancle = UIAlertAction(title: "확인", style: .default, handler: nil)
+        alert.addAction(cancle)
+        present(alert,animated: true,completion: nil)
+        
+//        let vc = StationInfoViewController()
+//            if #available(iOS 15.0, *) {
+//                if let presentationController = vc.presentationController as? UISheetPresentationController {
+//                    presentationController.detents = [.medium()]
+//                    self.present(vc, animated: true)
+//                }
+//            } else {
+//                // Fallback on earlier versions
+//                vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+//                self.present(vc, animated: true, completion: nil)
+//            }
     }
 }

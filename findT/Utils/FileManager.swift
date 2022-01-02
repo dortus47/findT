@@ -4,7 +4,6 @@
 //
 //  Created by 장은석 on 2021/12/29.
 //
-
 import Foundation
 
 final class FileManager {
@@ -36,7 +35,7 @@ final class FileManager {
         if let data = try? String(contentsOfFile: jsonPath).data(using: .utf8) {
             let json = try! JSONSerialization.jsonObject(with: data, options: []) as! [[String : Any]]
             for jsonIndex in json {
-                let key = (jsonIndex["LN_CD"] as! String) + (jsonIndex["STIN_NM"] as! String)
+                let key = (jsonIndex["LN_NM"] as! String) + (jsonIndex["STIN_NM"] as! String)
                 let value = stationCodeInfo(
                     jsonIndex["LN_CD"] as? String,
                     jsonIndex["LN_NM"] as? String,

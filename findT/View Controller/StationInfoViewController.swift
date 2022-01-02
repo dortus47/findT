@@ -10,7 +10,7 @@ import SnapKit
 
 class StationInfoViewController: UIViewController {
     
-    let netWorkManager: NetWorkManager = NetWorkManager()
+    var toiletAPIBody = DPToilet()
 
     // MARK: - Life Cycles
     
@@ -22,6 +22,7 @@ class StationInfoViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        netWorkManager.getStationInfo(lineCode: "I2")
+        
+        //netWorkManager.getStationInfo(lineCode: "I2")
     }
 }
