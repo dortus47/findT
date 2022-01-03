@@ -17,7 +17,6 @@ final class NetWorkManager {
     func downloadJSON(url: String, parameters: Dictionary<String, Any>) -> Observable<JSON?>  {
         return Observable.create { observer in
             DispatchQueue.global().async {
-                
                 AF.request(url,
                            method: .get,
                            parameters: parameters,
@@ -41,20 +40,14 @@ final class NetWorkManager {
     // MARK: - APIs
     
     func getDPToilet(railOprIsttCd: String?, lnCd: String?, stinCd: String?) -> DPToilet? {
-        guard let railOprIsttCd = railOprIsttCd else {
-            return nil
+        guard let railOprIsttCd = railOprIsttCd,
+                let lnCd = lnCd,
+                let stinCd = stinCd else {
+                    return nil
         }
-        
-        guard let lnCd = lnCd else {
-            return nil
-        }
-        
-        guard let stinCd = stinCd else {
-            return nil
-        }
-        
+
         var toilet: DPToilet = DPToilet()
-        
+
         let body = [
             "serviceKey": INFO.serviceKey,
             "format": "JSON",

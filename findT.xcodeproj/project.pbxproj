@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1A892C4E9D95B95BD5016483 /* libPods-findT.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7382EB9D7B006B6CF57B79AF /* libPods-findT.a */; };
+		A104AB9D27819DA1002F40EA /* DetailInfoStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A104AB9C27819DA1002F40EA /* DetailInfoStackView.swift */; };
 		A1227982277F23C900E9D6FF /* station_coordinate.json in Resources */ = {isa = PBXBuildFile; fileRef = A1227980277F23C900E9D6FF /* station_coordinate.json */; };
 		A1227983277F23C900E9D6FF /* station_code_info.json in Resources */ = {isa = PBXBuildFile; fileRef = A1227981277F23C900E9D6FF /* station_code_info.json */; };
 		A1227985277F298600E9D6FF /* stationCodeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1227984277F298600E9D6FF /* stationCodeInfo.swift */; };
@@ -34,6 +35,7 @@
 /* Begin PBXFileReference section */
 		7382EB9D7B006B6CF57B79AF /* libPods-findT.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-findT.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		821B6953A13055EEA85A6742 /* Pods-findT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-findT.debug.xcconfig"; path = "Target Support Files/Pods-findT/Pods-findT.debug.xcconfig"; sourceTree = "<group>"; };
+		A104AB9C27819DA1002F40EA /* DetailInfoStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoStackView.swift; sourceTree = "<group>"; };
 		A1227980277F23C900E9D6FF /* station_coordinate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = station_coordinate.json; sourceTree = "<group>"; };
 		A1227981277F23C900E9D6FF /* station_code_info.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = station_code_info.json; sourceTree = "<group>"; };
 		A1227984277F298600E9D6FF /* stationCodeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stationCodeInfo.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 		A104AB9B27819C20002F40EA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A104AB9C27819DA1002F40EA /* DetailInfoStackView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -141,8 +144,8 @@
 				A158D8D6277817F500F87F13 /* Models */,
 				A1D7D850277545BE008AB38C /* Utils */,
 				A110046C2774A80F00FC29AE /* Files */,
-				A104AB9B27819C20002F40EA /* Views */,
 				A1EE4EA9277ED7DB00D3C86D /* Cells */,
+				A104AB9B27819C20002F40EA /* Views */,
 				A18D8CAA277446020011660A /* View Controller */,
 				A18D8C96277438150011660A /* AppDelegate.swift */,
 				A18D8C98277438150011660A /* SceneDelegate.swift */,
@@ -306,6 +309,7 @@
 				A18D8C97277438150011660A /* AppDelegate.swift in Sources */,
 				A1EE4EAB277ED88300D3C86D /* SettingTableViewCell.swift in Sources */,
 				A1B7870B2776F57200ED30B7 /* NetworkManager.swift in Sources */,
+				A104AB9D27819DA1002F40EA /* DetailInfoStackView.swift in Sources */,
 				A146AC5A277DD662007B5CF9 /* StationInfoViewController.swift in Sources */,
 				A1C6A9BC277D73A000134615 /* ColorManager.swift in Sources */,
 				A158D8D82778181700F87F13 /* DPToilet.swift in Sources */,

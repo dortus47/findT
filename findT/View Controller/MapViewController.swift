@@ -8,9 +8,12 @@
 import UIKit
 import MapKit
 import SnapKit
+import RxSwift
 import CoreLocation
 
 class MapViewController: UIViewController, UISearchBarDelegate {
+    
+    lazy var disposeBag = DisposeBag()
     
     lazy var mapView: MKMapView = {
         var mapView = MKMapView()
@@ -247,31 +250,62 @@ extension MapViewController: MKMapViewDelegate {
         let railOprIsttCd: String? = info?.RAIL_OPR_ISTT_CD // 철도운영기관코드
         let stinCd: String? = info?.STIN_CD // 역코드
         
-        let toilet = networkManager.getDPToilet(railOprIsttCd: railOprIsttCd, lnCd: lnCd, stinCd: stinCd)
+        guard let railOprIsttCd = railOprIsttCd,
+              let lnCd = lnCd,
+              let stinCd = stinCd else {
+                  return
+              }
         
-        guard let toilet = toilet else {
-            let alert = UIAlertController(title:"조회된 데이터가 없습니다.",
-                                          message: nil,
-                                          preferredStyle: UIAlertController.Style.alert
-            )
-            let cancle = UIAlertAction(title: "확인", style: .default, handler: nil)
-            alert.addAction(cancle)
-            present(alert,animated: true,completion: nil)
-            return
-        }
+        let body = [
+            "serviceKey": INFO.serviceKey,
+            "format": "JSON",
+            "railOprIsttCd": railOprIsttCd,
+            "lnCd": lnCd,
+            "stinCd": stinCd
+        ]
         
-        let vc = StationInfoViewController()
-        vc.toiletInfo = toilet
+        networkManager.downloadJSON(url: API.stationDisabledToiletURL, parameters: body)
+            .subscribe { event in
+            switch event {
+            case let .next(jsonObj):
+                do {
+                    let jsonData: Data = try JSONEncoder().encode(jsonObj)
+                    let str = String.init(data: jsonData, encoding: .utf8)!.data(using: .utf8)!
+                    let result: DPToilet? = try JSONDecoder().decode(DPToilet.self, from: str)
+                    
+                    guard let result = result else {
+                        let alert = UIAlertController(title:"조회된 데이터가 없습니다.",
+                                                      message: nil,
+                                                      preferredStyle: UIAlertController.Style.alert
+                        )
+                        let cancle = UIAlertAction(title: "확인", style: .default, handler: nil)
+                        alert.addAction(cancle)
+                        self.present(alert,animated: true,completion: nil)
+                        return
+                    }
+                    
+                    let vc = StationInfoViewController()
+                    vc.toiletInfo = result
 
-        if #available(iOS 15.0, *) {
-            if let presentationController = vc.presentationController as? UISheetPresentationController {
-                presentationController.detents = [.medium()]
-                self.present(vc, animated: true)
+                    if #available(iOS 15.0, *) {
+                        if let presentationController = vc.presentationController as? UISheetPresentationController {
+                            presentationController.detents = [.medium()]
+                            self.present(vc, animated: true)
+                        }
+                    } else {
+                        // Fallback on earlier versions
+                        vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+                        self.present(vc, animated: true, completion: nil)
+                    }
+
+                } catch {
+                    print("error")
+                }
+            case .completed:
+                break
+            case .error:
+                break
             }
-        } else {
-            // Fallback on earlier versions
-            vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-            self.present(vc, animated: true, completion: nil)
-        }
+        }.disposed(by: disposeBag)
     }
 }
