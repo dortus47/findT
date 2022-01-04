@@ -22,7 +22,6 @@ class DetailInfoStackView: UIStackView {
     let rightLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 17)
-        label.textColor = .label
         label.numberOfLines = 1
         label.textColor = UIColor(red: 0.40, green: 0.40, blue: 0.67, alpha: 1.00)
         label.text = "내용"
@@ -35,7 +34,6 @@ class DetailInfoStackView: UIStackView {
         self.axis = .horizontal
         self.spacing = 10
         self.translatesAutoresizingMaskIntoConstraints = false
-//        self.backgroundColor = .red
         self.alignment = .fill
         self.distribution = .equalSpacing
         self.addArrangedSubview(leftLabel)

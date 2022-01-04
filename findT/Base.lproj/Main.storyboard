@@ -2,30 +2,13 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Epn-Ed-uLO">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item-->
-        <scene sceneID="tfy-Pn-XxG">
-            <objects>
-                <viewController id="cRB-I0-mBV" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="pm8-US-2zz">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="aPm-x2-Awj"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item" image="paintpalette.fill" catalog="system" id="kmw-vc-gfz"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="z5V-rL-fos" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-88" y="339"/>
-        </scene>
-        <!--Item-->
+        <!--Settings-->
         <scene sceneID="W5P-XH-wMK">
             <objects>
                 <tableViewController id="9Wy-wB-VUa" customClass="SetttingsTableViewController" customModule="findT" customModuleProvider="target" sceneMemberID="viewController">
@@ -48,11 +31,11 @@
                             <outlet property="delegate" destination="9Wy-wB-VUa" id="DrA-IX-JGL"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" image="gearshape.fill" catalog="system" selectedImage="gearshape.fill" id="Smi-cx-UIW"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="gearshape.fill" catalog="system" selectedImage="gearshape.fill" id="Smi-cx-UIW"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bMF-nt-ATQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="817" y="339"/>
+            <point key="canvasLocation" x="820" y="339"/>
         </scene>
         <!--Map-->
         <scene sceneID="tne-QT-ifu">
@@ -88,19 +71,48 @@
                     </tabBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="GC7-I8-xhA"/>
-                        <segue destination="cRB-I0-mBV" kind="relationship" relationship="viewControllers" id="zl6-Lu-nQW"/>
-                        <segue destination="9Wy-wB-VUa" kind="relationship" relationship="viewControllers" id="WEE-Fh-DKq"/>
+                        <segue destination="SYp-XL-Que" kind="relationship" relationship="viewControllers" id="R7P-nq-Mev"/>
+                        <segue destination="9Wy-wB-VUa" kind="relationship" relationship="viewControllers" id="U9h-hp-tn7"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Lq-3s-Qr7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-88" y="-386"/>
         </scene>
+        <!--Stations-->
+        <scene sceneID="45p-v8-7HP">
+            <objects>
+                <tableViewController id="SYp-XL-Que" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="DGN-eB-9Vp">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="5Tm-Ox-VYl">
+                                <rect key="frame" x="20" y="49.5" width="374" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5Tm-Ox-VYl" id="cCT-Xq-rdQ">
+                                    <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="SYp-XL-Que" id="tgn-Y1-Aze"/>
+                            <outlet property="delegate" destination="SYp-XL-Que" id="AL1-JV-ghm"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Stations" image="tram.fill" catalog="system" id="1zw-N0-aon"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aez-Zl-UFV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-88" y="339"/>
+        </scene>
     </scenes>
     <resources>
         <image name="gearshape.fill" catalog="system" width="128" height="121"/>
         <image name="map.circle.fill" catalog="system" width="128" height="121"/>
-        <image name="paintpalette.fill" catalog="system" width="128" height="105"/>
+        <image name="tram.fill" catalog="system" width="100" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

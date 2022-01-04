@@ -45,7 +45,6 @@ class MapViewController: UIViewController, UISearchBarDelegate {
         return searchBar
     }()
     
-    lazy var fileManager: FileManager = FileManager()
     lazy var networkManager: NetWorkManager = NetWorkManager()
     lazy var colorManager: ColorManager = ColorManager()
     lazy var locationManager: CLLocationManager = CLLocationManager() /// location manager
@@ -57,7 +56,7 @@ class MapViewController: UIViewController, UISearchBarDelegate {
         super.viewDidLoad()
         
         self.initViewProcess()
-        fileManager.loadFileDataProcess()
+        FileManager.loadFileDataProcess()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -128,7 +127,7 @@ class MapViewController: UIViewController, UISearchBarDelegate {
     
     // station_cordinate.json 파싱, 모든 역 핀업 추가
     private func addMarker() {
-        for stationItem in fileManager.stationCordinateDictionary {
+        for stationItem in FileManager.stationCordinateDictionary {
             guard let latitude = stationItem.value.lat else {
                 continue
             }
@@ -168,20 +167,31 @@ class MapViewController: UIViewController, UISearchBarDelegate {
             text = String(text.dropLast(1))
         }
         
-        guard let stationName = fileManager.stationCordinateDictionary[text]?.name else {
+        guard let stationName = FileManager.stationCordinateDictionary[text]?.name else {
             return
         }
         
-        guard let latitude = fileManager.stationCordinateDictionary[text]?.lat else {
+        guard let latitude = FileManager.stationCordinateDictionary[text]?.lat else {
             return
         }
         
-        guard let longitude = fileManager.stationCordinateDictionary[text]?.lng else {
+        guard let longitude = FileManager.stationCordinateDictionary[text]?.lng else {
             return
         }
         
         let loc = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         self.searchMapView(cordinate: loc, addr: stationName)
+    }
+    
+    // 맵에서 핀 클릭 시, 데이터가 없을 때 팝업되는 경고창
+    private func setAlertAcion() {
+        let alert = UIAlertController(title:"조회된 데이터가 없습니다.",
+                                      message: nil,
+                                      preferredStyle: UIAlertController.Style.alert
+        )
+        let cancle = UIAlertAction(title: "확인", style: .default, handler: nil)
+        alert.addAction(cancle)
+        self.present(alert,animated: true,completion: nil)
     }
 }
 
@@ -237,6 +247,8 @@ extension MapViewController: MKMapViewDelegate {
             return
         }
         
+        LoadingService.showLoading()
+        
         var text: String = view.annotation!.title! ?? ""
         if text.lastString == "역" {
             text = String(text.dropLast(1))
@@ -244,7 +256,7 @@ extension MapViewController: MKMapViewDelegate {
         
         // 역 코드 정보 dic은 subtitle과 tilte의 합(LN_NM + STIN_NM)
         let key = (view.annotation!.subtitle! ?? "") + (text)
-        let info = fileManager.stationCodeInfoDictionary[key]
+        let info = FileManager.stationCodeInfoDictionary[key]
         
         let lnCd: String? = info?.LN_CD // 선코드
         let railOprIsttCd: String? = info?.RAIL_OPR_ISTT_CD // 철도운영기관코드
@@ -253,6 +265,8 @@ extension MapViewController: MKMapViewDelegate {
         guard let railOprIsttCd = railOprIsttCd,
               let lnCd = lnCd,
               let stinCd = stinCd else {
+                  LoadingService.hideLoading()
+                  self.setAlertAcion()
                   return
               }
         
@@ -274,19 +288,14 @@ extension MapViewController: MKMapViewDelegate {
                     let result: DPToilet? = try JSONDecoder().decode(DPToilet.self, from: str)
                     
                     guard let result = result else {
-                        let alert = UIAlertController(title:"조회된 데이터가 없습니다.",
-                                                      message: nil,
-                                                      preferredStyle: UIAlertController.Style.alert
-                        )
-                        let cancle = UIAlertAction(title: "확인", style: .default, handler: nil)
-                        alert.addAction(cancle)
-                        self.present(alert,animated: true,completion: nil)
+                        LoadingService.hideLoading()
+                        self.setAlertAcion()
                         return
                     }
                     
                     let vc = StationInfoViewController()
                     vc.toiletInfo = result
-
+                    LoadingService.hideLoading()
                     if #available(iOS 15.0, *) {
                         if let presentationController = vc.presentationController as? UISheetPresentationController {
                             presentationController.detents = [.medium()]

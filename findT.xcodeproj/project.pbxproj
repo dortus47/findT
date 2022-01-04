@@ -17,6 +17,7 @@
 		A139EF2F277C34F400838BC7 /* stationCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A139EF2E277C34F400838BC7 /* stationCoordinate.swift */; };
 		A139EF31277C3A0600838BC7 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A139EF30277C3A0600838BC7 /* FileManager.swift */; };
 		A139EF33277C557500838BC7 /* Marker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A139EF32277C557500838BC7 /* Marker.swift */; };
+		A1466D3C27845E2D0074147D /* StationListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1466D3B27845E2D0074147D /* StationListTableViewCell.swift */; };
 		A146AC5A277DD662007B5CF9 /* StationInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A146AC59277DD662007B5CF9 /* StationInfoViewController.swift */; };
 		A151C4D12774534500E5003E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A151C4D02774534500E5003E /* MapViewController.swift */; };
 		A158D8D82778181700F87F13 /* DPToilet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A158D8D72778181700F87F13 /* DPToilet.swift */; };
@@ -26,6 +27,8 @@
 		A18D8C9E277438150011660A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A18D8C9C277438150011660A /* Main.storyboard */; };
 		A18D8CA0277438170011660A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A18D8C9F277438170011660A /* Assets.xcassets */; };
 		A18D8CA3277438170011660A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A18D8CA1277438170011660A /* LaunchScreen.storyboard */; };
+		A1B2389627831F5D007B8BBB /* LoadingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2389527831F5D007B8BBB /* LoadingService.swift */; };
+		A1B2389827836087007B8BBB /* StationListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2389727836087007B8BBB /* StationListTableViewController.swift */; };
 		A1B7870B2776F57200ED30B7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B7870A2776F57100ED30B7 /* NetworkManager.swift */; };
 		A1C6A9BC277D73A000134615 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C6A9BB277D73A000134615 /* ColorManager.swift */; };
 		A1D7D852277545E5008AB38C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D7D851277545E5008AB38C /* Constants.swift */; };
@@ -44,6 +47,7 @@
 		A139EF2E277C34F400838BC7 /* stationCoordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stationCoordinate.swift; sourceTree = "<group>"; };
 		A139EF30277C3A0600838BC7 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
 		A139EF32277C557500838BC7 /* Marker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marker.swift; sourceTree = "<group>"; };
+		A1466D3B27845E2D0074147D /* StationListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationListTableViewCell.swift; sourceTree = "<group>"; };
 		A146AC59277DD662007B5CF9 /* StationInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationInfoViewController.swift; sourceTree = "<group>"; };
 		A151C4D02774534500E5003E /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A158D8D72778181700F87F13 /* DPToilet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPToilet.swift; sourceTree = "<group>"; };
@@ -55,6 +59,8 @@
 		A18D8C9F277438170011660A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A18D8CA2277438170011660A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A18D8CA4277438170011660A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A1B2389527831F5D007B8BBB /* LoadingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingService.swift; sourceTree = "<group>"; };
+		A1B2389727836087007B8BBB /* StationListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationListTableViewController.swift; sourceTree = "<group>"; };
 		A1B7870A2776F57100ED30B7 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		A1C6A9BB277D73A000134615 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		A1D7D851277545E5008AB38C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -162,6 +168,7 @@
 			children = (
 				A151C4D02774534500E5003E /* MapViewController.swift */,
 				A146AC59277DD662007B5CF9 /* StationInfoViewController.swift */,
+				A1B2389727836087007B8BBB /* StationListTableViewController.swift */,
 				A139EF2C277C313600838BC7 /* SetttingsTableViewController.swift */,
 			);
 			path = "View Controller";
@@ -175,6 +182,7 @@
 				A1B7870A2776F57100ED30B7 /* NetworkManager.swift */,
 				A139EF30277C3A0600838BC7 /* FileManager.swift */,
 				A1C6A9BB277D73A000134615 /* ColorManager.swift */,
+				A1B2389527831F5D007B8BBB /* LoadingService.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -182,6 +190,7 @@
 		A1EE4EA9277ED7DB00D3C86D /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				A1466D3B27845E2D0074147D /* StationListTableViewCell.swift */,
 				A1EE4EAA277ED88300D3C86D /* SettingTableViewCell.swift */,
 			);
 			path = Cells;
@@ -306,13 +315,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1D7D852277545E5008AB38C /* Constants.swift in Sources */,
+				A1B2389627831F5D007B8BBB /* LoadingService.swift in Sources */,
 				A18D8C97277438150011660A /* AppDelegate.swift in Sources */,
 				A1EE4EAB277ED88300D3C86D /* SettingTableViewCell.swift in Sources */,
 				A1B7870B2776F57200ED30B7 /* NetworkManager.swift in Sources */,
 				A104AB9D27819DA1002F40EA /* DetailInfoStackView.swift in Sources */,
 				A146AC5A277DD662007B5CF9 /* StationInfoViewController.swift in Sources */,
 				A1C6A9BC277D73A000134615 /* ColorManager.swift in Sources */,
+				A1B2389827836087007B8BBB /* StationListTableViewController.swift in Sources */,
 				A158D8D82778181700F87F13 /* DPToilet.swift in Sources */,
+				A1466D3C27845E2D0074147D /* StationListTableViewCell.swift in Sources */,
 				A139EF2F277C34F400838BC7 /* stationCoordinate.swift in Sources */,
 				A139EF31277C3A0600838BC7 /* FileManager.swift in Sources */,
 				A1227985277F298600E9D6FF /* stationCodeInfo.swift in Sources */,
@@ -397,7 +409,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -452,7 +464,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -473,6 +485,9 @@
 				DEVELOPMENT_TEAM = 2Z9N6W59ZG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = findT/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This application requires location services to work";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "This application requires location services to work";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "App needs location servers for stuff.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -482,7 +497,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = Mies.findT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -502,6 +517,9 @@
 				DEVELOPMENT_TEAM = 2Z9N6W59ZG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = findT/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This application requires location services to work";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "This application requires location services to work";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "App needs location servers for stuff.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -511,7 +529,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = Mies.findT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

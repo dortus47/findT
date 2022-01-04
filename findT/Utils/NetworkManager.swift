@@ -23,10 +23,10 @@ final class NetWorkManager {
                            encoding: URLEncoding.default,
                            headers: API.header)
                     .validate(statusCode: 200..<300)
-                    .responseJSON { response in
+                    .response { response in
                         switch response.result {
                         case .success(let res):
-                            let jsonObj = JSON(res)["body"][0]
+                            let jsonObj = JSON(res as Any)["body"][0]
                             observer.onNext(jsonObj)
                         case .failure(let err):
                             print(err.localizedDescription)
