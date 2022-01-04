@@ -45,6 +45,7 @@ class MapViewController: UIViewController, UISearchBarDelegate {
         return searchBar
     }()
     
+    lazy var fileManager = FileManager.shared
     lazy var networkManager: NetWorkManager = NetWorkManager()
     lazy var colorManager: ColorManager = ColorManager()
     lazy var locationManager: CLLocationManager = CLLocationManager() /// location manager
@@ -55,8 +56,10 @@ class MapViewController: UIViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("1 before")
         self.initViewProcess()
-        FileManager.loadFileDataProcess()
+        fileManager.loadFileDataProcess()
+        print("1 after")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -127,7 +130,7 @@ class MapViewController: UIViewController, UISearchBarDelegate {
     
     // station_cordinate.json 파싱, 모든 역 핀업 추가
     private func addMarker() {
-        for stationItem in FileManager.stationCordinateDictionary {
+        for stationItem in fileManager.stationCordinateDictionary {
             guard let latitude = stationItem.value.lat else {
                 continue
             }
@@ -167,15 +170,15 @@ class MapViewController: UIViewController, UISearchBarDelegate {
             text = String(text.dropLast(1))
         }
         
-        guard let stationName = FileManager.stationCordinateDictionary[text]?.name else {
+        guard let stationName = fileManager.stationCordinateDictionary[text]?.name else {
             return
         }
         
-        guard let latitude = FileManager.stationCordinateDictionary[text]?.lat else {
+        guard let latitude = fileManager.stationCordinateDictionary[text]?.lat else {
             return
         }
         
-        guard let longitude = FileManager.stationCordinateDictionary[text]?.lng else {
+        guard let longitude = fileManager.stationCordinateDictionary[text]?.lng else {
             return
         }
         
@@ -256,7 +259,7 @@ extension MapViewController: MKMapViewDelegate {
         
         // 역 코드 정보 dic은 subtitle과 tilte의 합(LN_NM + STIN_NM)
         let key = (view.annotation!.subtitle! ?? "") + (text)
-        let info = FileManager.stationCodeInfoDictionary[key]
+        let info = fileManager.stationCodeInfoDictionary[key]
         
         let lnCd: String? = info?.LN_CD // 선코드
         let railOprIsttCd: String? = info?.RAIL_OPR_ISTT_CD // 철도운영기관코드
