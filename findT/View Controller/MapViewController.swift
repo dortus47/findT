@@ -23,12 +23,12 @@ class MapViewController: UIViewController, UISearchBarDelegate {
     let selfPositionBtn: UIButton = {
         let button = UIButton(type: .system)
         button.setTitleColor(.label, for: .normal)
-        button.backgroundColor = .white
+        button.backgroundColor = .clear
         button.clipsToBounds = true
         let config = UIImage.SymbolConfiguration(pointSize: 40, weight: .thin)
-        let image = UIImage(systemName: "location", withConfiguration: config)
+        let image = UIImage(systemName: "safari.fill", withConfiguration: config)
         button.setImage(image, for: .normal)
-        button.tintColor = .black
+        button.tintColor = UIColor(red: 0.40, green: 0.40, blue: 0.67, alpha: 1.00)
         button.frame.size.height = 80
         button.frame.size.width = 80
         return button
@@ -90,7 +90,7 @@ class MapViewController: UIViewController, UISearchBarDelegate {
         
         self.view.addSubview(selfPositionBtn)
         selfPositionBtn.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().offset(-100)
+            make.bottom.equalToSuperview().offset(-80)
             make.right.equalToSuperview().offset(-30)
         }
         

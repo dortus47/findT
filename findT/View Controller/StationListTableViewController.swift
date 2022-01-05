@@ -13,6 +13,8 @@ class StationListTableViewController: UITableViewController {
     
     lazy var sorted = Array(FileManager.shared.stationCordinateDictionary.keys)
     
+    let colorManager = ColorManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,13 +34,22 @@ class StationListTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     
+    // 셀 클릭 시, 탭 뷰 이동+ 위치 지정 로직
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let referenceForTabBarController = self.tabBarController!
+        self.dismiss(animated: true, completion:{
+            referenceForTabBarController.selectedIndex = 0
+            print("done")
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "callFunction"), object: "서울역")
+        })
+    }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return list.count
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(section, sorted.filter{sectionCheck(name: $0) == list[section]}.count)
         return sorted.filter{sectionCheck(name: $0) == list[section]}.count
     }
     
@@ -46,8 +57,11 @@ class StationListTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: StationListTableViewCell.identifier, for: indexPath) as? StationListTableViewCell else {
             return UITableViewCell()
         }
-        let text = sorted.filter{sectionCheck(name: $0) == list[indexPath.section]}[indexPath.row]
-        cell.testView.leftLabel.text = text
+        let leftText = sorted.filter{sectionCheck(name: $0) == list[indexPath.section]}[indexPath.row]
+        let rightText = FileManager.shared.stationCordinateDictionary[leftText]?.line
+        let color = colorManager.lineDictionary[rightText!]
+        cell.setData(name: leftText, line: rightText!, color: color!)
+        
         return cell
     }
     

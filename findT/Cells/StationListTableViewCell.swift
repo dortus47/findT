@@ -11,12 +11,12 @@ class StationListTableViewCell: UITableViewCell {
     
     static let identifier = "StationListTableViewCell"
     
-    let testView: DetailInfoStackView = DetailInfoStackView()
+    lazy var stackView: DetailInfoStackView = DetailInfoStackView()
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        self.contentView.addSubview(testView)
+        self.contentView.addSubview(stackView)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -25,7 +25,17 @@ class StationListTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setData(name: String) {
-        testView.leftLabel.text = name
+    func setData(name: String, line: String, color: UIColor) {
+        stackView.leftLabel.text = name
+        stackView.leftLabel.font = .boldSystemFont(ofSize: 18)
+        stackView.rightLabel.text = line
+        stackView.rightLabel.font = .systemFont(ofSize: 17)
+        stackView.rightLabel.textColor = color
+        
+        stackView.snp.makeConstraints { make in
+            make.left.equalTo(30)
+            make.right.equalTo(-30)
+            make.height.equalTo(44)
+        }
     }
 }
