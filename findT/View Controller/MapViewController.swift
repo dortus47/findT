@@ -15,6 +15,9 @@ class MapViewController: UIViewController, UISearchBarDelegate {
     
     lazy var disposeBag = DisposeBag()
     
+    // StationListTableViewController의 노티피케이션 호출에서 발생한 메소드는 자신의 위치로 초기화하지 않도록 하기 위해.
+    var selfCheckFlag: Bool = true
+    
     lazy var mapView: MKMapView = {
         var mapView = MKMapView()
         return mapView
@@ -56,10 +59,8 @@ class MapViewController: UIViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("1 before")
-        self.initViewProcess()
         fileManager.loadFileDataProcess()
-        print("1 after")
+        self.initViewProcess()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -101,6 +102,38 @@ class MapViewController: UIViewController, UISearchBarDelegate {
         }
         
         selfPositionBtn.addTarget(self, action: #selector(didTapSelfPositionBtn), for: .touchUpInside)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(functionName(_:)), name: .searchMap, object: nil)
+    }
+    
+    @objc func functionName(_ notification: Notification) {
+        let text = notification.object as! String
+        print(text)
+        
+        guard let latitude = fileManager.stationCordinateDictionary[text]?.lat else {
+            let alert = UIAlertController(title:"\(text)은 위치 데이터가 없습니다.",
+                                          message: "추후 업데이트 예정",
+                                          preferredStyle: UIAlertController.Style.alert
+            )
+            let cancle = UIAlertAction(title: "확인", style: .default, handler: nil)
+            alert.addAction(cancle)
+            self.present(alert,animated: true,completion: nil)
+            return
+        }
+        
+        guard let longitude = fileManager.stationCordinateDictionary[text]?.lng else {
+            let alert = UIAlertController(title:"\(text)은 위치 데이터가 없습니다.",
+                                          message: "추후 업데이트 예정",
+                                          preferredStyle: UIAlertController.Style.alert
+            )
+            let cancle = UIAlertAction(title: "확인", style: .default, handler: nil)
+            alert.addAction(cancle)
+            self.present(alert,animated: true,completion: nil)
+            return
+        }
+        let cordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        let region = MKCoordinateRegion(center: cordinate, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+        self.mapView.setRegion(region, animated: true)
     }
     
     // MARK: - Map
@@ -118,7 +151,10 @@ class MapViewController: UIViewController, UISearchBarDelegate {
                 locationManager.delegate = self
                 locationManager.requestWhenInUseAuthorization()
                 self.mapView.showsUserLocation = true
-                self.mapView.setUserTrackingMode(.follow, animated: true)
+                if selfCheckFlag {
+                    self.mapView.setUserTrackingMode(.follow, animated: true)
+                    selfCheckFlag = !selfCheckFlag
+                }
             }
         } else {
             let alert = UIAlertController(title: "오류 발생", message: "위치 서비스 기능이 꺼져있음", preferredStyle: .alert)
@@ -169,7 +205,6 @@ class MapViewController: UIViewController, UISearchBarDelegate {
         if text.lastString == "역" {
             text = String(text.dropLast(1))
         }
-        
         guard let stationName = fileManager.stationCordinateDictionary[text]?.name else {
             return
         }
@@ -181,7 +216,6 @@ class MapViewController: UIViewController, UISearchBarDelegate {
         guard let longitude = fileManager.stationCordinateDictionary[text]?.lng else {
             return
         }
-        
         let loc = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         self.searchMapView(cordinate: loc, addr: stationName)
     }

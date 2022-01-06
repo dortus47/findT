@@ -36,11 +36,12 @@ class StationListTableViewController: UITableViewController {
     
     // 셀 클릭 시, 탭 뷰 이동+ 위치 지정 로직
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let name = sorted.filter{sectionCheck(name: $0) == list[indexPath.section]}[indexPath.row]
         let referenceForTabBarController = self.tabBarController!
         self.dismiss(animated: true, completion:{
             referenceForTabBarController.selectedIndex = 0
-            print("done")
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "callFunction"), object: "서울역")
+            NotificationCenter.default.post(name: .searchMap, object: name)
+            print("sssss")
         })
     }
     

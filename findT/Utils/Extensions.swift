@@ -56,3 +56,7 @@ extension UILabel {
         self.attributedText = attributeString
     }
 }
+
+extension Notification.Name {
+    static let searchMap = Notification.Name("searchMap")
+}
