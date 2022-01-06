@@ -206,6 +206,7 @@ class MapViewController: UIViewController, UISearchBarDelegate {
             text = String(text.dropLast(1))
         }
         guard let stationName = fileManager.stationCordinateDictionary[text]?.name else {
+            self.showToast(message: "다시 입력해 주세요.")
             return
         }
         
@@ -229,6 +230,30 @@ class MapViewController: UIViewController, UISearchBarDelegate {
         let cancle = UIAlertAction(title: "확인", style: .default, handler: nil)
         alert.addAction(cancle)
         self.present(alert,animated: true,completion: nil)
+    }
+    
+    func showToast(message : String, font: UIFont = UIFont.systemFont(ofSize: 14.0)) {
+        let toastLabel = UILabel(frame: CGRect(x: self.view.frame.size.width/2 - 75,
+                                               y: 140,
+                                               width: 150,
+                                               height: 35))
+        
+        toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        toastLabel.textColor = UIColor.white
+        toastLabel.font = font
+        toastLabel.textAlignment = .center
+        toastLabel.text = message
+        toastLabel.alpha = 1.0
+        toastLabel.layer.cornerRadius = 10
+        toastLabel.clipsToBounds = true
+        self.view.addSubview(toastLabel)
+        UIView.animate(withDuration: 2.0,
+                       delay: 0.1,
+                       options: .curveEaseOut,
+                       animations: {toastLabel.alpha = 0.0},
+                       completion: { _ in
+            toastLabel.removeFromSuperview()
+        })
     }
 }
 
@@ -317,41 +342,41 @@ extension MapViewController: MKMapViewDelegate {
         
         networkManager.downloadJSON(url: API.stationDisabledToiletURL, parameters: body)
             .subscribe { event in
-            switch event {
-            case let .next(jsonObj):
-                do {
-                    let jsonData: Data = try JSONEncoder().encode(jsonObj)
-                    let str = String.init(data: jsonData, encoding: .utf8)!.data(using: .utf8)!
-                    let result: DPToilet? = try JSONDecoder().decode(DPToilet.self, from: str)
-                    
-                    guard let result = result else {
-                        LoadingService.hideLoading()
-                        self.setAlertAcion()
-                        return
-                    }
-                    
-                    let vc = StationInfoViewController()
-                    vc.toiletInfo = result
-                    LoadingService.hideLoading()
-                    if #available(iOS 15.0, *) {
-                        if let presentationController = vc.presentationController as? UISheetPresentationController {
-                            presentationController.detents = [.medium()]
-                            self.present(vc, animated: true)
+                switch event {
+                case let .next(jsonObj):
+                    do {
+                        let jsonData: Data = try JSONEncoder().encode(jsonObj)
+                        let str = String.init(data: jsonData, encoding: .utf8)!.data(using: .utf8)!
+                        let result: DPToilet? = try JSONDecoder().decode(DPToilet.self, from: str)
+                        
+                        guard let result = result else {
+                            LoadingService.hideLoading()
+                            self.setAlertAcion()
+                            return
                         }
-                    } else {
-                        // Fallback on earlier versions
-                        vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-                        self.present(vc, animated: true, completion: nil)
+                        
+                        let vc = StationInfoViewController()
+                        vc.toiletInfo = result
+                        LoadingService.hideLoading()
+                        if #available(iOS 15.0, *) {
+                            if let presentationController = vc.presentationController as? UISheetPresentationController {
+                                presentationController.detents = [.medium()]
+                                self.present(vc, animated: true)
+                            }
+                        } else {
+                            // Fallback on earlier versions
+                            vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+                            self.present(vc, animated: true, completion: nil)
+                        }
+                        
+                    } catch {
+                        print("error")
                     }
-
-                } catch {
-                    print("error")
+                case .completed:
+                    break
+                case .error:
+                    break
                 }
-            case .completed:
-                break
-            case .error:
-                break
-            }
-        }.disposed(by: disposeBag)
+            }.disposed(by: disposeBag)
     }
 }
