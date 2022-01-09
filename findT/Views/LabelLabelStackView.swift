@@ -8,12 +8,12 @@
 import UIKit
 import SnapKit
 
-class DetailInfoStackView: UIStackView {
+class LabelLabelStackView: UIStackView {
     
     let leftLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 18)
-        label.textColor = .label
+        label.textColor = UIColor(red: 0.00, green: 0.00, blue: 0.00, alpha: 1.00)
         label.numberOfLines = 1
         label.text = "제목"
         return label

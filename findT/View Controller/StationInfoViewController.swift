@@ -22,11 +22,11 @@ class StationInfoViewController: UIViewController {
     
     var toiletInfo = DPToilet()
     
-    let dtlLocView: DetailInfoStackView = DetailInfoStackView()         // 상세위치
-    let mlFmlDvNmView: DetailInfoStackView = DetailInfoStackView()      // 남녀구분
-    let grndDvNmView: DetailInfoStackView = DetailInfoStackView()       // 지상구분
-    let gateInotDvNmView: DetailInfoStackView = DetailInfoStackView()   // 게이트내외구분
-    let stinFlorNumView: DetailInfoStackView = DetailInfoStackView()    // 역층
+    let dtlLocView: LabelLabelStackView = LabelLabelStackView()         // 상세위치
+    let mlFmlDvNmView: LabelLabelStackView = LabelLabelStackView()      // 남녀구분
+    let grndDvNmView: LabelLabelStackView = LabelLabelStackView()       // 지상구분
+    let gateInotDvNmView: LabelLabelStackView = LabelLabelStackView()   // 게이트내외구분
+    let stinFlorNumView: LabelLabelStackView = LabelLabelStackView()    // 역층
 
     // MARK: - Life Cycles
     

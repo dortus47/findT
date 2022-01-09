@@ -41,7 +41,6 @@ class StationListTableViewController: UITableViewController {
         self.dismiss(animated: true, completion:{
             referenceForTabBarController.selectedIndex = 0
             NotificationCenter.default.post(name: .searchMap, object: name)
-            print("sssss")
         })
     }
     

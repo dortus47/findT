@@ -7,77 +7,87 @@
 
 import UIKit
 import SnapKit
+import MapKit
 
 class SetttingsTableViewController: UITableViewController {
     
-    let tempTitle = ["임시1", "임시2", "임시3"]
-
+    
+    let sections = ["title", "options"]
+    let tempTitle = ["임시1", "임시2", "임시3", "임시4"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        
+        tableView.rowHeight = UITableView.automaticDimension
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
+        return sections.count
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return tempTitle.count
+        if section == 0 {
+            return 1
+        } else {
+            return tempTitle.count
+        }
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SettingTableViewCell.identifier, for: indexPath) as! SettingTableViewCell
-        cell.settingLabel.text = tempTitle[indexPath.row]
-        return cell
+        // title
+        if indexPath.section == 0 {
+            let cell = UITableViewCell()
+            let titleImage = UIImageView(image: UIImage(named: "testImage.jpg"))
+            
+            cell.backgroundColor = .brown
+            titleImage.backgroundColor = .red
+            cell.contentView.backgroundColor = .blue
+            cell.contentView.addSubview(titleImage)
+            titleImage.snp.makeConstraints { make in
+                make.height.width.equalTo(self.view.frame.height / 5)
+                make.left.equalToSuperview().offset(10)
+            }
+//            titleImage.layer.cornerRadius = 100
+            titleImage.layer.masksToBounds = true
+//            titleImage.layer.borderWidth = 1
+            titleImage.clipsToBounds = true
+            
+            
+            cell.contentView.snp.makeConstraints { make in
+                make.height.equalTo(titleImage.snp.height)
+            }
+            return cell
+        }
+        
+        // options
+        else if indexPath.section == 1 {
+            switch indexPath.row {
+            case 0:
+                let cell = SettingTableViewCell()
+                cell.setData(name: "sounds")
+                return cell
+            case 1:
+                let cell = SettingTableViewCell()
+                cell.setData(name: "sounds")
+                return cell
+            default:
+                let cell = UITableViewCell()
+                cell.contentView.backgroundColor = .cyan
+                return cell
+            }
+        } else {
+            return UITableViewCell()
+        }
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        return indexPath
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

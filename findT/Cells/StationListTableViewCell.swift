@@ -11,7 +11,7 @@ class StationListTableViewCell: UITableViewCell {
     
     static let identifier = "StationListTableViewCell"
     
-    lazy var stackView: DetailInfoStackView = DetailInfoStackView()
+    lazy var stackView: LabelLabelStackView = LabelLabelStackView()
 
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1A892C4E9D95B95BD5016483 /* libPods-findT.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7382EB9D7B006B6CF57B79AF /* libPods-findT.a */; };
-		A104AB9D27819DA1002F40EA /* DetailInfoStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A104AB9C27819DA1002F40EA /* DetailInfoStackView.swift */; };
+		A104AB9D27819DA1002F40EA /* LabelLabelStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A104AB9C27819DA1002F40EA /* LabelLabelStackView.swift */; };
+		A11625022788A75900C5B542 /* LabelButtonUIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11625012788A75900C5B542 /* LabelButtonUIStackView.swift */; };
 		A1227982277F23C900E9D6FF /* station_coordinate.json in Resources */ = {isa = PBXBuildFile; fileRef = A1227980277F23C900E9D6FF /* station_coordinate.json */; };
 		A1227983277F23C900E9D6FF /* station_code_info.json in Resources */ = {isa = PBXBuildFile; fileRef = A1227981277F23C900E9D6FF /* station_code_info.json */; };
 		A1227985277F298600E9D6FF /* stationCodeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1227984277F298600E9D6FF /* stationCodeInfo.swift */; };
@@ -22,6 +23,7 @@
 		A151C4D12774534500E5003E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A151C4D02774534500E5003E /* MapViewController.swift */; };
 		A158D8D82778181700F87F13 /* DPToilet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A158D8D72778181700F87F13 /* DPToilet.swift */; };
 		A15D463027744CE5000AC7BE /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = A15D462F27744CE5000AC7BE /* .swiftlint.yml */; };
+		A1814E252787464C004454F5 /* testImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A1814E242787464C004454F5 /* testImage.jpg */; };
 		A18D8C97277438150011660A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18D8C96277438150011660A /* AppDelegate.swift */; };
 		A18D8C99277438150011660A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18D8C98277438150011660A /* SceneDelegate.swift */; };
 		A18D8C9E277438150011660A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A18D8C9C277438150011660A /* Main.storyboard */; };
@@ -38,7 +40,8 @@
 /* Begin PBXFileReference section */
 		7382EB9D7B006B6CF57B79AF /* libPods-findT.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-findT.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		821B6953A13055EEA85A6742 /* Pods-findT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-findT.debug.xcconfig"; path = "Target Support Files/Pods-findT/Pods-findT.debug.xcconfig"; sourceTree = "<group>"; };
-		A104AB9C27819DA1002F40EA /* DetailInfoStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailInfoStackView.swift; sourceTree = "<group>"; };
+		A104AB9C27819DA1002F40EA /* LabelLabelStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelLabelStackView.swift; sourceTree = "<group>"; };
+		A11625012788A75900C5B542 /* LabelButtonUIStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelButtonUIStackView.swift; sourceTree = "<group>"; };
 		A1227980277F23C900E9D6FF /* station_coordinate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = station_coordinate.json; sourceTree = "<group>"; };
 		A1227981277F23C900E9D6FF /* station_code_info.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = station_code_info.json; sourceTree = "<group>"; };
 		A1227984277F298600E9D6FF /* stationCodeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stationCodeInfo.swift; sourceTree = "<group>"; };
@@ -52,6 +55,7 @@
 		A151C4D02774534500E5003E /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A158D8D72778181700F87F13 /* DPToilet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPToilet.swift; sourceTree = "<group>"; };
 		A15D462F27744CE5000AC7BE /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		A1814E242787464C004454F5 /* testImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = testImage.jpg; sourceTree = "<group>"; };
 		A18D8C93277438150011660A /* findT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = findT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A18D8C96277438150011660A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A18D8C98277438150011660A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,7 +104,8 @@
 		A104AB9B27819C20002F40EA /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				A104AB9C27819DA1002F40EA /* DetailInfoStackView.swift */,
+				A104AB9C27819DA1002F40EA /* LabelLabelStackView.swift */,
+				A11625012788A75900C5B542 /* LabelButtonUIStackView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -108,6 +113,7 @@
 		A110046C2774A80F00FC29AE /* Files */ = {
 			isa = PBXGroup;
 			children = (
+				A1814E242787464C004454F5 /* testImage.jpg */,
 				A1227981277F23C900E9D6FF /* station_code_info.json */,
 				A1227980277F23C900E9D6FF /* station_coordinate.json */,
 			);
@@ -259,6 +265,7 @@
 				A15D463027744CE5000AC7BE /* .swiftlint.yml in Resources */,
 				A18D8CA3277438170011660A /* LaunchScreen.storyboard in Resources */,
 				A18D8CA0277438170011660A /* Assets.xcassets in Resources */,
+				A1814E252787464C004454F5 /* testImage.jpg in Resources */,
 				A1227982277F23C900E9D6FF /* station_coordinate.json in Resources */,
 				A18D8C9E277438150011660A /* Main.storyboard in Resources */,
 				A1227983277F23C900E9D6FF /* station_code_info.json in Resources */,
@@ -319,7 +326,7 @@
 				A18D8C97277438150011660A /* AppDelegate.swift in Sources */,
 				A1EE4EAB277ED88300D3C86D /* SettingTableViewCell.swift in Sources */,
 				A1B7870B2776F57200ED30B7 /* NetworkManager.swift in Sources */,
-				A104AB9D27819DA1002F40EA /* DetailInfoStackView.swift in Sources */,
+				A104AB9D27819DA1002F40EA /* LabelLabelStackView.swift in Sources */,
 				A146AC5A277DD662007B5CF9 /* StationInfoViewController.swift in Sources */,
 				A1C6A9BC277D73A000134615 /* ColorManager.swift in Sources */,
 				A1B2389827836087007B8BBB /* StationListTableViewController.swift in Sources */,
@@ -328,6 +335,7 @@
 				A139EF2F277C34F400838BC7 /* stationCoordinate.swift in Sources */,
 				A139EF31277C3A0600838BC7 /* FileManager.swift in Sources */,
 				A1227985277F298600E9D6FF /* stationCodeInfo.swift in Sources */,
+				A11625022788A75900C5B542 /* LabelButtonUIStackView.swift in Sources */,
 				A18D8C99277438150011660A /* SceneDelegate.swift in Sources */,
 				A139EF33277C557500838BC7 /* Marker.swift in Sources */,
 				A139EF2D277C313600838BC7 /* SetttingsTableViewController.swift in Sources */,
@@ -497,7 +505,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = Mies.findT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -529,7 +537,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = Mies.findT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
