@@ -1,14 +1,13 @@
 //
-//  LabelButtonUIStackView.swift
+//  LabelSwitchUIStackView.swift
 //  findT
 //
-//  Created by 장은석 on 2022/01/08.
+//  Created by 장은석 on 2022/01/09.
 //
 
 import UIKit
-import SnapKit
 
-class LabelButtonStackView: UIStackView {
+class LabelSwitchUIStackView: UIStackView {
     
     let leftLabel: UILabel = {
         let label = UILabel()
@@ -19,10 +18,10 @@ class LabelButtonStackView: UIStackView {
         return label
     }()
     
-    let rightButton: UIButton = {
-        let button = UIButton()
-        button.tintColor = UIColor(red: 0.40, green: 0.40, blue: 0.67, alpha: 1.00)
-        return button
+    let rightSwitch: UISwitch = {
+        let rightSwitch = UISwitch()
+        rightSwitch.onTintColor = UIColor(red: 0.40, green: 0.40, blue: 0.67, alpha: 1.00)
+        return rightSwitch
     }()
     
     override init(frame: CGRect) {
@@ -34,7 +33,7 @@ class LabelButtonStackView: UIStackView {
         self.alignment = .fill
         self.distribution = .equalSpacing
         self.addArrangedSubview(leftLabel)
-        self.addArrangedSubview(rightButton)
+        self.addArrangedSubview(rightSwitch)
     }
     
     required init(coder: NSCoder) {

@@ -42,19 +42,11 @@ class SetttingsTableViewController: UITableViewController {
             let cell = UITableViewCell()
             let titleImage = UIImageView(image: UIImage(named: "testImage.jpg"))
             
-            cell.backgroundColor = .brown
-            titleImage.backgroundColor = .red
-            cell.contentView.backgroundColor = .blue
             cell.contentView.addSubview(titleImage)
             titleImage.snp.makeConstraints { make in
                 make.height.width.equalTo(self.view.frame.height / 5)
                 make.left.equalToSuperview().offset(10)
             }
-//            titleImage.layer.cornerRadius = 100
-            titleImage.layer.masksToBounds = true
-//            titleImage.layer.borderWidth = 1
-            titleImage.clipsToBounds = true
-            
             
             cell.contentView.snp.makeConstraints { make in
                 make.height.equalTo(titleImage.snp.height)
@@ -75,7 +67,8 @@ class SetttingsTableViewController: UITableViewController {
                 return cell
             default:
                 let cell = UITableViewCell()
-                cell.contentView.backgroundColor = .cyan
+//                let cellSwitch = UISwitch()
+//                cell.accessoryView = cellSwitch
                 return cell
             }
         } else {
