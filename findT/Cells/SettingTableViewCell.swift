@@ -48,6 +48,6 @@ class SettingTableViewCell: UITableViewCell {
     
     func setData(name: String) {
         stackView.leftLabel.text = name
-        stackView.leftLabel.font = .boldSystemFont(ofSize: 18)
+        stackView.leftLabel.font = .systemFont(ofSize: 17)
     }
 }

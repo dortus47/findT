@@ -16,6 +16,8 @@ enum INFO {
     static let serviceKey: String = "$2a$10$5wDUZNY4j/mcxX3Uca26muPtCiCiyFgx0xBBvTGIbkjtr7Ik6p5jy"
     
     static let periodOfUse: String = "2021.12.23 ~ 2022.12.23"
+    
+    static let findTVersion: String = "1.0.2"
 }
 
 enum API {
