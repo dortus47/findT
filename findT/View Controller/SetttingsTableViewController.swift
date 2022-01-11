@@ -13,15 +13,17 @@ class SetttingsTableViewController: UITableViewController {
     
     
     let sections = ["findT", "options"]
-    let tempTitle = ["임시1", "임시2"]
+    let tempTitle = ["title1", "title2"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     @objc func switchChanged(sender: UISwitch!) {
-        print("Switch value is \(sender.isOn)")
-        print("Switch item is \(sender.tag)")
+        let value = (sender as AnyObject).isOn // true면 저장, false면 저장안함
+        let plist = UserDefaults.standard // 기본 저장소 객체를 가져온다.
+        plist.set(value, forKey: "sound")
+        plist.synchronize() // 동기화 처리
     }
     
     // MARK: - Table view data source
@@ -61,7 +63,9 @@ class SetttingsTableViewController: UITableViewController {
             switch indexPath.row {
             case 0:
                 let cell = SettingTableViewCell()
-                cell.setData(name: "sounds")
+                cell.setData(name: "Sounds")
+                let plist = UserDefaults.standard // 기본 저장소 객체를 가져온다.
+                cell.stackView.rightSwitch.isOn = plist.bool(forKey: "sound")
                 cell.stackView.rightSwitch.addTarget(self, action: #selector(switchChanged(sender:)), for: .touchUpInside)
                 return cell
             case 1:

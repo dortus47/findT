@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import AudioToolbox
 
 class LoadingService {
     static func showLoading() {
@@ -33,6 +34,9 @@ class LoadingService {
 
     static func hideLoading() {
         DispatchQueue.main.async {
+            if UserDefaults.standard.bool(forKey: "sound") {
+                AudioServicesPlaySystemSound(1057)
+            }
             guard let window = UIApplication.shared.windows.last else { return }
             window.subviews.filter({ $0 is UIActivityIndicatorView })
                 .forEach { $0.removeFromSuperview() }

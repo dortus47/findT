@@ -16,6 +16,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+        
+        // 셋팅값 기본 설정
+        let plist = UserDefaults.standard
+        plist.register(
+            defaults: [
+                "sound": true
+            ]
+        )
+        plist.synchronize()
+        print("scene", plist.bool(forKey: "sound"))
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
