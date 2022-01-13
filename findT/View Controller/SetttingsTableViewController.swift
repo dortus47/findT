@@ -11,6 +11,15 @@ import MapKit
 
 class SetttingsTableViewController: UITableViewController {
     
+    let titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = .italicSystemFont(ofSize: 24)
+        label.textColor = UIColor(red: 0.40, green: 0.40, blue: 0.67, alpha: 1.00)
+        label.numberOfLines = 1
+        label.text = "findT"
+        return label
+    }()
+    
     
     let sections = ["findT", "options"]
     let tempTitle = ["title1", "title2"]
@@ -44,17 +53,28 @@ class SetttingsTableViewController: UITableViewController {
         // title
         if indexPath.section == 0 {
             let cell = UITableViewCell()
-            let titleImage = UIImageView(image: UIImage(named: "testImage.jpg"))
+            cell.selectionStyle = .none
+            let titleImage = UIImageView(image: UIImage(named: "circle.png"))
 
             cell.contentView.addSubview(titleImage)
+            cell.contentView.addSubview(titleLabel)
             titleImage.snp.makeConstraints { make in
-                make.height.width.equalTo(self.view.frame.height / 5)
+                make.width.height.equalTo(self.view.frame.height / 7)
                 make.left.equalToSuperview().offset(10)
+                make.top.equalToSuperview().offset(15)
+                make.bottom.equalToSuperview().offset(-15)
+            }
+            
+            cell.contentView.snp.makeConstraints { make in
+                make.height.equalTo((self.view.frame.height / 7) + 30)
+                make.width.equalToSuperview()
             }
 
-            cell.contentView.snp.makeConstraints { make in
-                make.height.equalTo(titleImage.snp.height)
+            titleLabel.snp.makeConstraints { make in
+                make.right.equalToSuperview().offset(-25)
+                make.top.equalToSuperview().offset(25)
             }
+            
             return cell
         }
 

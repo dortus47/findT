@@ -22,7 +22,7 @@
 		A151C4D12774534500E5003E /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A151C4D02774534500E5003E /* MapViewController.swift */; };
 		A158D8D82778181700F87F13 /* DPToilet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A158D8D72778181700F87F13 /* DPToilet.swift */; };
 		A15D463027744CE5000AC7BE /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = A15D462F27744CE5000AC7BE /* .swiftlint.yml */; };
-		A1814E252787464C004454F5 /* testImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A1814E242787464C004454F5 /* testImage.jpg */; };
+		A16457A3278DE70600927F05 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = A16457A2278DE70600927F05 /* circle.png */; };
 		A18D8C97277438150011660A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18D8C96277438150011660A /* AppDelegate.swift */; };
 		A18D8C99277438150011660A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18D8C98277438150011660A /* SceneDelegate.swift */; };
 		A18D8C9E277438150011660A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A18D8C9C277438150011660A /* Main.storyboard */; };
@@ -54,7 +54,7 @@
 		A151C4D02774534500E5003E /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A158D8D72778181700F87F13 /* DPToilet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DPToilet.swift; sourceTree = "<group>"; };
 		A15D462F27744CE5000AC7BE /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
-		A1814E242787464C004454F5 /* testImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = testImage.jpg; sourceTree = "<group>"; };
+		A16457A2278DE70600927F05 /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
 		A18D8C93277438150011660A /* findT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = findT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A18D8C96277438150011660A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A18D8C98277438150011660A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -113,7 +113,7 @@
 		A110046C2774A80F00FC29AE /* Files */ = {
 			isa = PBXGroup;
 			children = (
-				A1814E242787464C004454F5 /* testImage.jpg */,
+				A16457A2278DE70600927F05 /* circle.png */,
 				A1227981277F23C900E9D6FF /* station_code_info.json */,
 				A1227980277F23C900E9D6FF /* station_coordinate.json */,
 			);
@@ -265,10 +265,10 @@
 				A15D463027744CE5000AC7BE /* .swiftlint.yml in Resources */,
 				A18D8CA3277438170011660A /* LaunchScreen.storyboard in Resources */,
 				A18D8CA0277438170011660A /* Assets.xcassets in Resources */,
-				A1814E252787464C004454F5 /* testImage.jpg in Resources */,
 				A1227982277F23C900E9D6FF /* station_coordinate.json in Resources */,
 				A18D8C9E277438150011660A /* Main.storyboard in Resources */,
 				A1227983277F23C900E9D6FF /* station_code_info.json in Resources */,
+				A16457A3278DE70600927F05 /* circle.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,12 +505,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = Mies.findT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -537,12 +537,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = Mies.findT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

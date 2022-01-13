@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "KakaoTalk_Photo_2022-01-12-00-44-29.jpeg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "KakaoTalk_Photo_2022-01-12-00-44-28.jpeg",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "KakaoTalk_Photo_2022-01-12-00-44-27.jpeg",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
