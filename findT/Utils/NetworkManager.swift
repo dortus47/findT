@@ -17,6 +17,7 @@ final class NetWorkManager {
     func downloadJSON(url: String, parameters: Dictionary<String, Any>) -> Observable<JSON?>  {
         return Observable.create { observer in
             DispatchQueue.global().async {
+                AF.sessionConfiguration.timeoutIntervalForRequest = 5
                 AF.request(url,
                            method: .get,
                            parameters: parameters,
@@ -29,6 +30,7 @@ final class NetWorkManager {
                             let jsonObj = JSON(res as Any)["body"][0]
                             observer.onNext(jsonObj)
                         case .failure(let err):
+                            observer.onError(err)
                             print(err.localizedDescription)
                         }
                     }

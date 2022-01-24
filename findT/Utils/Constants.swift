@@ -17,7 +17,7 @@ enum INFO {
     
     static let periodOfUse: String = "2021.12.23 ~ 2022.12.23"
     
-    static let findTVersion: String = "1.0.4"
+    static let findTVersion: String = "1.0.5"
 }
 
 enum API {

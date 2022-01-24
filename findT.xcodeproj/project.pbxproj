@@ -158,7 +158,7 @@
 				A110046C2774A80F00FC29AE /* Files */,
 				A1EE4EA9277ED7DB00D3C86D /* Cells */,
 				A104AB9B27819C20002F40EA /* Views */,
-				A18D8CAA277446020011660A /* View Controller */,
+				A18D8CAA277446020011660A /* View Controllers */,
 				A18D8C96277438150011660A /* AppDelegate.swift */,
 				A18D8C98277438150011660A /* SceneDelegate.swift */,
 				A18D8C9F277438170011660A /* Assets.xcassets */,
@@ -169,7 +169,7 @@
 			path = findT;
 			sourceTree = "<group>";
 		};
-		A18D8CAA277446020011660A /* View Controller */ = {
+		A18D8CAA277446020011660A /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				A151C4D02774534500E5003E /* MapViewController.swift */,
@@ -177,7 +177,7 @@
 				A1B2389727836087007B8BBB /* StationListTableViewController.swift */,
 				A139EF2C277C313600838BC7 /* SetttingsTableViewController.swift */,
 			);
-			path = "View Controller";
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 		A1D7D850277545BE008AB38C /* Utils */ = {
@@ -493,9 +493,9 @@
 				DEVELOPMENT_TEAM = 2Z9N6W59ZG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = findT/Info.plist;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This application requires location services to work";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "현재 위치 주변 역을 확인하기 위해 해당 권한이 필요합니다.";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "This application requires location services to work";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "App needs location servers for stuff.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "현재 위치 주변 역을 확인하기 위해 해당 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -505,7 +505,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = Mies.findT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -525,9 +525,9 @@
 				DEVELOPMENT_TEAM = 2Z9N6W59ZG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = findT/Info.plist;
-				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This application requires location services to work";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "현재 위치 주변 역을 확인하기 위해 해당 권한이 필요합니다.";
 				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "This application requires location services to work";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "App needs location servers for stuff.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "현재 위치 주변 역을 확인하기 위해 해당 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -537,7 +537,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.4;
+				MARKETING_VERSION = 1.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = Mies.findT;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

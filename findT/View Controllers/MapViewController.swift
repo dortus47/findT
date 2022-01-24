@@ -255,6 +255,11 @@ class MapViewController: UIViewController, UISearchBarDelegate {
             toastLabel.removeFromSuperview()
         })
     }
+    
+    @objc func timerAction() {
+        print("4 sec")
+        
+    }
 }
 
 extension MapViewController: CLLocationManagerDelegate {
@@ -310,6 +315,8 @@ extension MapViewController: MKMapViewDelegate {
         }
         
         LoadingService.showLoading()
+//        mTimer = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(timerAction), userInfo: nil, repeats: false)
+        
         
         var text: String = view.annotation!.title! ?? ""
         if text.lastString == "역" {
@@ -375,6 +382,14 @@ extension MapViewController: MKMapViewDelegate {
                 case .completed:
                     break
                 case .error:
+                    LoadingService.hideLoading()
+                    let alert = UIAlertController(title:"네트워크 상태를 다시 확인해 주세요.",
+                                                  message: nil,
+                                                  preferredStyle: UIAlertController.Style.alert
+                    )
+                    let cancle = UIAlertAction(title: "확인", style: .default, handler: nil)
+                    alert.addAction(cancle)
+                    self.present(alert,animated: true,completion: nil)
                     break
                 }
             }.disposed(by: disposeBag)
